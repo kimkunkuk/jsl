@@ -27,8 +27,9 @@
 				mem.t_date.focus();
 				return;
 			}
+			mem.t_gubun.value = "memberSave"
 			mem.method="post"; //post ,get 의차이 post는 넘기는 값을 안보이게 넘긴다 
-			mem.action="DBMemberSave" //폼의 넘의가는 값을 받을 jsp 페이지
+			mem.action="Member" //폼의 넘의가는 값을 받을 jsp 페이지
 			mem.submit(); // 실행 
 		}
 	</script>
@@ -41,6 +42,7 @@
 		</div>		
 		<div class="write_wrap">
 			<form name="mem"> <!-- 폼으로 감싸야 인풋값 넘길수가 있음 -->
+			<input type="hidden" name="t_gubun">
 			<div class="board_list">
 				<table class="board_table">
 					<colgroup>
@@ -78,7 +80,7 @@
 			</form>
 			<div class="btn_wrap">
 				<input type="button" value="등록" onclick="goSave()" class="btn_ok">&nbsp;&nbsp;
-				<input type="button" value="목록" onclick="location.href='MemberList'" class="btn_list">
+				<input type="button" value="목록" onclick="location.href='Member'" class="btn_list">
 			</div>
 		</div>
 	</div>

@@ -31,14 +31,22 @@
 	}
 	function goView(id){
 		view.t_id.value = id;
+		view.t_gubun.value = "view";
 		view.method="post";
-		view.action="MemberView";
+		view.action="Member";
+		view.submit();
+	}
+	function goWrite(){
+		view.t_gubun.value = "writeForm";
+		view.method="post";
+		view.action="Member";
 		view.submit();
 	}
 </script>
 <body>
 <form name="view">
 	<input type="hidden" name="t_id">
+	<input type="hidden" name="t_gubun">
 </form>
 	<div class="container">
 
@@ -91,7 +99,7 @@
 		<div class="paging">
 			<!-- <a href="Memberwrite" class="write">회원등록</a>  -->
 			
-			<a href="Member?t_gubun=writeForm" class="write">회원등록</a>
+			<a href="javascript:goWrite()" class="write">회원등록</a>
 		</div>
 	</div>
  </body>

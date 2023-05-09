@@ -16,9 +16,17 @@
 	</script>
 </head>
 <script>
-	function goDelete(){
+	function goUpdate(){
+		mem.t_gubun.value = "update";
 		mem.method="post";
-		mem.action="DBMemberDelete";
+		mem.action="Member";
+		mem.submit();
+	}
+	
+	function goDelete(){
+		mem.t_gubun.value = "delete";
+		mem.method="post";
+		mem.action="Member";
 		mem.submit();
 	}
 </script>
@@ -31,6 +39,7 @@
 		<div class="write_wrap">
 		<form name="mem">
 		<input type="hidden" name="t_id" value="<%=dto.getId() %>">
+		<input type="hidden" name="t_gubun" >
 			<div class="board_list">
 				<table class="board_table">
 					<colgroup>
@@ -67,8 +76,8 @@
 			</div>
 			</form>
 			<div class="btn_wrap">
-				<input type="button" onClick="location.href='MemberList'" value="목록" class="btn_list">
-				<input type="button" onClick="location.href='MemberUpdate?t_id=<%=dto.getId() %>'" value="수정" class="btn_list">
+				<input type="button" onClick="location.href='Member'" value="목록" class="btn_list">
+				<input type="button" onClick="goUpdate()" value="수정" class="btn_list">
 				<input type="button" onClick="goDelete()" value="삭제" class="btn_list">
 			</div>
 		</div>
