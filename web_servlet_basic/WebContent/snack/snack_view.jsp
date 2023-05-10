@@ -11,12 +11,27 @@
 	<link href="css/common.css" rel="stylesheet">
 	<link href="css/layout.css" rel="stylesheet" >	
 	<script type="text/javascript">
-		function goDelete(){
-			
+		function goUpdate(code){
+			snack.t_code.value= code;
+			snack.t_gubun.value="update";
+			snack.method="post";
+			snack.action="Snack";
+			snack.submit();
+		}
+		function goDelte(code){
+			snack.t_code.value= code;
+			snack.t_gubun.value="delete";
+			snack.method="post";
+			snack.action="Snack";
+			snack.submit();
 		}
 	</script>
 </head>
 <body>
+<form name="snack">
+	<input type="hidden" name="t_code">
+	<input type="hidden" name="t_gubun">
+</form>
 	<div class="container">
 	
 		<div class="leftmargin">
@@ -59,9 +74,9 @@
 				</table>
 			</div>
 			<div class="btn_wrap">
-				<input type="button" onClick="location.href='SnackList'" value="목록" class="btn_list">
-				<input type="button" onClick="location.href='SnackUpdate?t_code=<%=dto.getP_code() %>'" value="수정" class="btn_list">
-				<input type="button" onClick="location.href='DBSnackDelete?t_code=<%=dto.getP_code() %>'" value="삭제" class="btn_list">
+				<input type="button" onClick="location.href='Snack'" value="목록" class="btn_list">
+				<input type="button" onClick="javascript:goUpdate('<%=dto.getP_code() %>')" value="수정" class="btn_list">
+				<input type="button" onClick="javascript:goDelte('<%=dto.getP_code() %>')" value="삭제" class="btn_list">
 			</div>
 		</div>
 	</div>

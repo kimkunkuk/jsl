@@ -18,8 +18,9 @@
 	<link href="css/layout.css" rel="stylesheet" >	
 	<script type="text/javascript">
 		function goUpdate(){
+			sna.t_gubun.value="updateSave";
 			sna.method="post";
-			sna.action="DBSnackUpdate";
+			sna.action="Snack";
 			sna.submit();
 		}
 	</script>
@@ -27,6 +28,7 @@
 <body>
 	<form name="sna">
 	<input type="hidden" name=t_code value="<%=dto.getP_code() %>">
+	<input type="hidden" name="t_gubun">
 	<div class="container">
 		<div class="leftmargin">
 			<img src="images/jsl_logo.png"><h1>TRACK11 홍길동 SNACK</h1>
@@ -73,7 +75,7 @@
 			</div>
 			</form>
 			<div class="btn_wrap">
-				<input type="button" onClick="location.href='SnackList'" value="목록" class="btn_list">
+				<input type="button" onClick="location.href='Snack'" value="목록" class="btn_list">
 				<input type="button" onClick="goUpdate()" value="수정저장" class="btn_ok">&nbsp;&nbsp;
 			</div>
 		</div>

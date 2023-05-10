@@ -45,10 +45,10 @@ public class DBMemberSave extends HttpServlet {
 		
 		
 		String msg = "등록성공!";
-		String url = "MemberList";
+		String url = "Member";
 		if(result != 1) {
 			msg = "등록실패!";
-			url = "Memberwrite";
+			url = "Member";
 		}
 		
 		request.setAttribute("t_msg", msg);

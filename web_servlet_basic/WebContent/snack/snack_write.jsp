@@ -29,8 +29,9 @@
 				board.t_price.focus();
 				return;
 			}
+			board.t_gubun.value="writeSave"
 			board.method="post";
-			board.action="DBSnackSave";
+			board.action="Snack";
 			board.submit();
 		}
 	</script>
@@ -43,6 +44,7 @@
 		</div>		
 		<div class="write_wrap">
 			<form name="board">
+			<input type="hidden" name="t_gubun">
 			<div class="board_list">
 				<table class="board_table">
 					<colgroup>
@@ -83,7 +85,7 @@
 			</div>
 			</form>
 			<div class="btn_wrap">
-				<input type="button" value="목록" onclick="location.href='SnackList'" class="btn_ok">&nbsp;&nbsp;
+				<input type="button" value="목록" onclick="location.href='Snack'" class="btn_ok">&nbsp;&nbsp;
 				<input type="button" value="등록" onclick="goSave()" class="btn_list">
 			</div>
 		</div>

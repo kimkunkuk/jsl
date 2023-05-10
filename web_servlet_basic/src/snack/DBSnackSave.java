@@ -44,10 +44,10 @@ public class DBSnackSave extends HttpServlet {
 		int count = dao.snakcSaveCount(code);
 		int result = dao.snackSave(dto);
 		String msg = "등록성공!";
-		String url = "SnackList";
+		String url = "Snack";
 		if(result != 1) {
 			msg = "등록실패!";
-			url = "SnackWrite";
+			url = "Snack";
 			if(count == 1) msg = "중복된 제품번호";
 		}
 		

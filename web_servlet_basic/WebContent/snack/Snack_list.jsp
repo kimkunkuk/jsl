@@ -28,7 +28,24 @@
 		sna.action="SnackList";
 		sna.submit();
 	}
+	function goWrite(){
+		view.t_gubun.value = "writeForm";
+		view.method="post";
+		view.action="Snack";
+		view.submit();
+	}
+	function goView(code){
+		view.t_code.value = code;
+		view.t_gubun.value = "view";
+		view.method="post";
+		view.action="Snack";
+		view.submit();
+	}
 </script>
+<form name="view">
+	<input type="hidden" name="t_code">
+	<input type="hidden" name="t_gubun">
+</form>
 	<div class="container">
 
 		<div class="leftmargin">
@@ -69,7 +86,7 @@
 			<tbody>
 			<%for(SnackDto dto : dtos) {%>
 				<tr>
-					<td><a href="SnackView?t_code=<%=dto.getP_code() %>"><%=dto.getP_code() %></a></td>
+					<td><a href="javascript:goView('<%=dto.getP_code() %>')"><%=dto.getP_code() %></a></td>
 					<td><%=dto.getP_name() %></td>
 					<td><%=dto.getM_name() %></td>
 					<td><%=dto.getSprice() %></td>
@@ -78,7 +95,7 @@
 			</tbody>
 		</table>
 		<div class="paging">
-			<a href="SnackWrite" class="write">제품등록</a>
+			<a href="javascript:goWrite()" class="write">제품등록</a>
 		</div>
 	</div>
  </body>
