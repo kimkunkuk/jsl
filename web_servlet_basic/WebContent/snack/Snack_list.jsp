@@ -1,11 +1,14 @@
-<%@page import="dto.SnackDto"%>
+<%@page import="dto.SnackDto,dao.*"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
+	SnackDao dao = new SnackDao();
+	ArrayList<SnackDto> arr = dao.getCompanyList();
 	ArrayList<SnackDto> dtos = (ArrayList<SnackDto>)request.getAttribute("t_dtos");
 	String select = (String)request.getAttribute("t_select");
 	String search = (String)request.getAttribute("t_search");
+	String com = (String)request.getAttribute("t_com"); 
 %>
 <!DOCTYPE html>
 <html> 
@@ -25,7 +28,7 @@
 <script>
 	function goSearch(){
 		sna.method="post";
-		sna.action="SnackList";
+		sna.action="Snack";
 		sna.submit();
 	}
 	function goWrite(){
@@ -59,10 +62,16 @@
 			<div class="search_group">
 				<select name="t_select" class="select">
 					<option value="p_name" <%if(select.equals("p_name")) out.print("selected"); %>>제품명</option>
-					<option value="m_name" <%if(select.equals("m_name")) out.print("selected"); %>>제조사명</option>
+					<option value="p_code" <%if(select.equals("m_name")) out.print("selected"); %>>제조번호</option>
 				</select>
 				<input type="text" name="t_search" value="<%=search %>" class="search_word">
 				<button onclick="goSearch()" class="btn_search"><i class="fa fa-search"></i><span class="sr-only">검색버튼</span></button>
+				<div>
+				<input type="radio" value="all" name="com" style="vertical-align:middle;" checked> 전체 &nbsp;
+				<%for(int k=0; k<arr.size(); k++){ %>
+				<input type="radio" value="<%=arr.get(k).getM_code() %>" name="com" style="vertical-align:middle;" <%if(com.equals(arr.get(k).getM_code())) out.print("checked"); %>> <%=arr.get(k).getM_name() %> &nbsp;
+				<%} %>
+				</div>
 			</div>
 			</form>
 		</div>

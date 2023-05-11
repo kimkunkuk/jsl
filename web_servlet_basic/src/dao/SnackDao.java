@@ -57,11 +57,11 @@ ResultSet rs = null;
 	}
 	
 	//조회 , 검색
-	public ArrayList<SnackDto> getSnackList(String gubun, String search){
+	public ArrayList<SnackDto> getSnackList(String gubun, String search, String com){
 		ArrayList<SnackDto> arr = new ArrayList<>();
 		String query = "select s.p_code, s.p_name, c.m_name, to_char(s.price,'999,999') as price\r\n" + 
 					"from h_이주형_snack s, commonsnack c \r\n" + 
-					"where s.m_code = c.m_code and "+gubun+" like '%"+search+"%'\r\n" + 
+					"where s.m_code = c.m_code and s.m_code like '%"+com+"%' and "+gubun+" like '%"+search+"%'\r\n" + 
 					"order by p_code";
 		try {
 			con = DBConnection.getConnection();

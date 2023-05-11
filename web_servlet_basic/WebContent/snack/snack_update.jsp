@@ -65,7 +65,7 @@
 							<td class="th_left">
 								<select name="t_com"  class="select">
 									<%for(int k=0; k<arr.size(); k++) {%>
-									<option value="<%=arr.get(k).getM_code()%>"><%=arr.get(k).getM_name() %></option>
+									<option value="<%=arr.get(k).getM_code()%>" <%if(arr.get(k).getM_code().equals(dto.getM_code())) out.print("selected"); %>><%=arr.get(k).getM_name() %></option>
 									<%} %>	
 								</select>								
 							</td>

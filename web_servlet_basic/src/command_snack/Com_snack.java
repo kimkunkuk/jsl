@@ -14,11 +14,14 @@ public class Com_snack {
 		
 		String select = request.getParameter("t_select");
 		String search = request.getParameter("t_search");
+		String com = request.getParameter("com");
 		if(select == null){ // null로 넘어가서 조회 값 이상해지는거 방지
 			select = "p_name";
 			search = "";
 		}
-		ArrayList<SnackDto> dtos = dao.getSnackList(select, search);
+		if(com == null) com="all";
+		if(com.equals("all")) com = "";
+		ArrayList<SnackDto> dtos = dao.getSnackList(select, search, com);
 		request.setAttribute("t_dtos", dtos);
 		request.setAttribute("t_select", select);
 		request.setAttribute("t_search", search);

@@ -1,4 +1,4 @@
-package snack;
+package test;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -10,20 +10,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.SnackDao;
-import dto.SnackDto;
-
 /**
- * Servlet implementation class SnackList
+ * Servlet implementation class El_jstl
  */
-@WebServlet("/SnackList")
-public class SnackList extends HttpServlet {
+@WebServlet("/El_jstl")
+public class El_jstl extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SnackList() {
+    public El_jstl() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,27 +29,21 @@ public class SnackList extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		SnackDao dao = new SnackDao();
-		request.setCharacterEncoding("utf-8");
+		String name="홍길동";
+		int age = 25;
+		ArrayList<String> arr = new ArrayList<String>();
+		arr.add("김");
+		arr.add("이");
+		arr.add("박");
+		arr.add("최");
+		arr.add("정");
 		
-		String select = request.getParameter("t_select");
-		String search = request.getParameter("t_search");
-		String com = request.getParameter("com");
-		if(select == null){ // null로 넘어가서 조회 값 이상해지는거 방지
-			select = "p_name";
-			search = "";
-		}
-		if(com == null) com="all";
-		if(com.equals("all")) com = "";
-		ArrayList<SnackDto> dtos = dao.getSnackList(select, search, com);
-		request.setAttribute("t_dtos", dtos);
-		request.setAttribute("t_select", select);
-		request.setAttribute("t_search", search);
-		request.setAttribute("t_com", com);
+		request.setAttribute("t_name", name);
+		request.setAttribute("t_age", age);
+		request.setAttribute("t_arr", arr);
 		
-		RequestDispatcher rd = request.getRequestDispatcher("snack/Snack_list.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("el_jstl.jsp");
 		rd.forward(request, response);
-	
 	}
 
 	/**
