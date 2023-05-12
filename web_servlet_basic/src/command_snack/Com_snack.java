@@ -25,6 +25,7 @@ public class Com_snack {
 		request.setAttribute("t_dtos", dtos);
 		request.setAttribute("t_select", select);
 		request.setAttribute("t_search", search);
+		request.setAttribute("t_com", com);
 	}
 	
 	public void executeWriteSave(HttpServletRequest request) {

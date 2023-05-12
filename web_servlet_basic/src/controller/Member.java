@@ -47,7 +47,8 @@ public class Member extends HttpServlet {
 			//목록
 			MemberList memberList = new MemberList();
 			memberList.execute(request);
-			viewPage = "member/member_list.jsp";
+			//viewPage = "member/member_list.jsp";
+			viewPage = "member/member_list_jstl.jsp";
 			
 			//등록
 		}else if(gubun.equals("writeForm")) {
@@ -63,13 +64,15 @@ public class Member extends HttpServlet {
 		}else if(gubun.equals("view")) {
 			MemberView view = new MemberView();
 			view.execute(request);
-			viewPage = "member/member_view.jsp";
+			//viewPage = "member/member_view.jsp";
+			viewPage = "member/member_view_jstl.jsp";
 			
 			//수정
 		}else if(gubun.equals("update")) {
 			MemberUpdate update = new MemberUpdate();
 			update.execute(request);
-			viewPage = "member/member_update.jsp";
+			//viewPage = "member/member_update.jsp";
+			viewPage = "member/member_update_jstl.jsp";
 			
 			//수정저장
 		}else if(gubun.equals("updateSave")) {

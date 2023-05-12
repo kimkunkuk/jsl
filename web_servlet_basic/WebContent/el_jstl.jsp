@@ -63,6 +63,29 @@ arr 6: ${t_arr[5] }<br><br>
 <c:if test="${t_name eq '홍길동' or t_age >= 30 }">
 	12. 이름이 홍길동이거나 나이가 30 이상이다 <br>
 </c:if>
+ <br> <br>
+
+========= jstl 표현 if / else ========= <br>
+<c:choose>
+	<c:when test="${t_age > 40}">40이상</c:when>
+	<c:when test="${t_age > 30}">30이상</c:when>
+	<c:when test="${t_age > 20}">20이상</c:when>
+	<c:otherwise>choose 나머지 모든경우 <br></c:otherwise>
+</c:choose>
+ <br> <br>
+
+========= jstl 표현 반복문 ========= <br>
+<c:forEach items="${t_arr }" var="area">
+	${area }<br>
+</c:forEach>
+<c:forEach items="${t_dtos }" var="dto">
+	${dto.getName() } ${dto.getArea() } ${dto.getAge() }
+	<br>
+</c:forEach>
+
+
+
+
 
 
 
