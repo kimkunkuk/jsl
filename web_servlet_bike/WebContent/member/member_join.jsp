@@ -23,7 +23,7 @@
 		if(checkValue(join.t_mobile_3,"휴대전화 입력해주세요.")) return;
 		if(checkValue(join.t_gender,"성별을 체크해주세요.")) return;
 		
-		join.t_gubun.value="memberSave";
+		join.t_gubun.value="memberSave"; 
 		join.method="post";
 		join.action="Member";
 		join.submint();
