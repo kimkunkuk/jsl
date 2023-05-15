@@ -31,6 +31,8 @@ public class Memberjoin implements CommonExcute {
 		String hobby_t = request.getParameter("t_hobby_t");
 		String hobby_r = request.getParameter("t_hobby_r");
 		String hobby_s = request.getParameter("t_hobby_s");
+		
+		
 	}
 
 }
