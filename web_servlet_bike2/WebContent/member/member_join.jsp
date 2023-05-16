@@ -3,30 +3,83 @@
 <%@ include file = "../common_header.jsp" %>
 <script>
 	function goJoin(){
-		
+	
 		if(checkValue(join.t_id,"Id 입력하세요.")) return;
+		var id_length = join.t_id.value.length;
+		if(id_length <3 || id_length >10){
+			alert("ID 3자리이상 10자리 이내!");
+			join.t_id.focus();
+			return;
+		}
 		
 		if(checkValue(join.t_name,"이름 입력하세요.")) return;
-		
+	
 		if(checkValue(join.t_pw1,"비밀번호 입력하세요.")) return;
 		if(checkValue(join.t_pw2,"비밀번호 확인 입력하세요.")) return;
-		
+	
 		if(join.t_pw1.value != join.t_pw2.value){
 			alert("비밀번호 확인 불일치!");
 			join.t_pw2.focus();
 			return;
 		}
-		
+
 		if(checkValue(join.t_address,"주소를 입력해주세요.")) return;
+
 		if(checkValue(join.t_mobile_1,"휴대전화 입력해주세요.")) return;
+		var m1_length = join.t_mobile_1.value.length;
+		if(m1_length != 3){
+			alert("휴대번호 앞자리 3자리입력 ex)010, 011");
+			return;
+		}
+		
 		if(checkValue(join.t_mobile_2,"휴대전화 입력해주세요.")) return;
+		var m2_length = join.t_mobile_2.value.length;
+		if(m2_length != 4){
+			alert("휴대번호 4자리 입력");
+			join.t_mobile_2.focus();
+			return;
+		}
+		
 		if(checkValue(join.t_mobile_3,"휴대전화 입력해주세요.")) return;
+		var m3_length = join.t_mobile_3.value.length;
+		if(m3_length != 4){
+			alert("휴대번호 4자리 입력");
+			join.t_mobile_3.focus();
+			return;
+		}
+		
 		if(checkValue(join.t_gender,"성별을 체크해주세요.")) return;
 		
 		join.t_gubun.value="memberSave"; 
 		join.method="post";
 		join.action="Member";
-		join.submint();
+		
+		//join.action="Member?t_gubun=memberSave";
+		join.submit();
+		
+	}
+	function checkId(){
+		if(checkValue(join.t_id,"id입력후 중복검사!!!")	) return;
+		
+		$.ajax({
+			type : "POST",
+			url : "IdCheck",
+			data: "t_id="+join.t_id.value,
+			dataType : "text",
+			error : function(){
+				alert('통신실패!!!!!');
+			},
+			success : function(data){
+				var result = $.trim(data);
+				join.t_idcheck.value = result;
+				
+				if(result == "사용가능"){
+					join.t_idcheckValue.value = mem.t_id.value;
+				}else{
+					join.t_idcheckValue.value = "";
+				}
+			}
+		});				
 	}
 </script>	
 		<div id="b_left">
@@ -56,6 +109,8 @@
 				  <td>
 					<input name="t_id" type="text" size="10" id="id" title="id입력하세요">
 					<input type="button" onclick="checkId()" value="ID중복검사" class="checkB">
+					<input type="text" name="t_idcheck" readonly style="border:none">
+					<input type="hidden" name="t_idcheckValue" readonly style="border:none">
 				  </td>
 				</tr>
 				<tr>

@@ -1,27 +1,25 @@
-package controller;
+package command_member;
 
 import java.io.IOException;
-
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import command_member.Memberjoin;
+import dao.MemberDao;
 
 /**
- * Servlet implementation class Member
+ * Servlet implementation class IdCheck
  */
-@WebServlet("/Member")
-public class Member extends HttpServlet {
+@WebServlet("/IdCheck")
+public class IdCheck extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Member() {
+    public IdCheck() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,28 +28,12 @@ public class Member extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("utf-8");
-		String gubun = request.getParameter("t_gubun");
-		if(gubun == null) gubun="memberLogin";
-		String viewPage = "";
 		
-		//회원가입폼
-		if(gubun.equals("memberJoin")) {
-			viewPage = "member/member_join.jsp";
-			
-		//회원가입 세이브	
-		}else if(gubun.equals("memberSave")) {
-			Memberjoin member = new Memberjoin();
-			member.execute(request);
-			viewPage = "common_alert.jsp";
-		//로그인	
-		}else if(gubun.equals("memberLogin")) {
-			viewPage = "member/member_login.jsp";
-			
-		}
+		MemberDao dao = new MemberDao();
+		String id = request.getParameter("t_id");
 		
-		RequestDispatcher rd = request.getRequestDispatcher(viewPage);
-		rd.forward(request, response);
+		int count = dao.checkId(id);
+		
 	}
 
 	/**
