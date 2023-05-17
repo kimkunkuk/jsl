@@ -74,4 +74,28 @@ public class MemberDao {
     	}
     	return result;
     }
+    
+    //로그인
+    public String loginCheck(String id, String pw) {
+    	String name = "";
+    	String query = "select name from bike_이주형_member\r\n" + 
+    				"where id='"+id+"' and password = '"+pw+"';";
+    	
+    	try {
+    		con = DBConnection.getConnection();
+    		ps  = con.prepareStatement(query);
+    		rs  = ps.executeQuery();
+    		if(rs.next()) {
+    			name = rs.getNString("name");
+    		}
+    	}catch(SQLException e) {
+    		System.out.println("loginCheck(): "+query);
+    		e.printStackTrace();
+    	}finally {
+    		DBConnection.closeDB(con, ps, rs);
+    	}
+    	
+    	return name;
+    }
+    
 }

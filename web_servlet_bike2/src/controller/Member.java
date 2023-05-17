@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import command_member.MemberLogin;
 import command_member.Memberjoin;
 
 /**
@@ -46,6 +47,8 @@ public class Member extends HttpServlet {
 			viewPage = "common_alert.jsp";
 		//로그인	
 		}else if(gubun.equals("memberLogin")) {
+			MemberLogin member = new MemberLogin();
+			
 			viewPage = "member/member_login.jsp";
 			
 		}

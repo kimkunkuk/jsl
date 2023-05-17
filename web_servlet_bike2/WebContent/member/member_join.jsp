@@ -11,6 +11,11 @@
 			join.t_id.focus();
 			return;
 		}
+		if(join.t_id.value != join.t_idcheckValue.value){
+			alert("ID 중복검사해주세요!");
+			join.t_id.focus();
+			return;
+		}
 		
 		if(checkValue(join.t_name,"이름 입력하세요.")) return;
 	
@@ -65,19 +70,21 @@
 			type : "POST",
 			url : "IdCheck",
 			data: "t_id="+join.t_id.value,
-			dataType : "text",
+			dataType : "text", //순간적으로 띄운 브라우저 에 글씨 받아오겠다.
 			error : function(){
 				alert('통신실패!!!!!');
 			},
 			success : function(data){
 				var result = $.trim(data);
+				
 				join.t_idcheck.value = result;
 				
 				if(result == "사용가능"){
-					join.t_idcheckValue.value = mem.t_id.value;
+					join.t_idcheckValue.value = join.t_id.value;
 				}else{
 					join.t_idcheckValue.value = "";
 				}
+				
 			}
 		});				
 	}

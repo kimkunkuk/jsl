@@ -1,7 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file = "../common_header.jsp" %>
+<script>
+	function memberLogin(){
+		goLogin.t_gubun.value="memberLogin";
+		goLogin.method="post";
+		goLogin.action="Member";
+		goLogin.submit();
+	}
 	
+</script>
 		<div id="b_left">
 			<P>MEMBER</P>
 			<ul>
@@ -20,7 +28,7 @@
 				<div class="member_boxL">
 					<h2>LOGIN</h2>
 					<div class="login_form">
-						<form name="frmLogin">
+						<form name="goLogin">
 							<input type="hidden" name="t_gubun" value="login">
 							<div class="fl_clear"><label for="mbrId">아이디</label><input name="t_id" id="mbrId" type="text" onkeypress="if( event.keyCode==13 ){goPw()}"></div>
 							<div class="fl_clear"><label for="scrtNo">비밀번호</label><input name="t_pw" id="scrtNo" type="password" onkeypress="if( event.keyCode==13 ){memberLogin()}"></div>
