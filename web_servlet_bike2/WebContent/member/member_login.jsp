@@ -2,8 +2,16 @@
     pageEncoding="UTF-8"%>
 <%@ include file = "../common_header.jsp" %>
 <script>
+	function goPw(){
+		goLogin.t_pw.focus();
+	}
 	function memberLogin(){
-		goLogin.t_gubun.value="memberLogin";
+		if(checkValue(goLogin.t_id,"id입력!")) return;
+		if(goLogin.t_pw.value == ""){
+			
+			return;
+		}
+		goLogin.t_gubun.value="goLogin";
 		goLogin.method="post";
 		goLogin.action="Member";
 		goLogin.submit();
@@ -33,6 +41,8 @@
 							<div class="fl_clear"><label for="mbrId">아이디</label><input name="t_id" id="mbrId" type="text" onkeypress="if( event.keyCode==13 ){goPw()}"></div>
 							<div class="fl_clear"><label for="scrtNo">비밀번호</label><input name="t_pw" id="scrtNo" type="password" onkeypress="if( event.keyCode==13 ){memberLogin()}"></div>
 							<a class="btn_login btn_Blue" href="javascript:memberLogin()">로그인</a>
+							
+							<div><input name="al" ></div>
 						</form>
 					</div>
 				   

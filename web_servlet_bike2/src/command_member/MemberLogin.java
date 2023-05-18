@@ -3,9 +3,11 @@ package command_member;
 import java.security.NoSuchAlgorithmException;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import common.CommonExcute;
 import dao.MemberDao;
+import dto.MemberDto;
 
 public class MemberLogin implements CommonExcute {
 
@@ -21,8 +23,30 @@ public class MemberLogin implements CommonExcute {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		String msg ="", url ="";
 		
-		String name = dao.loginCheck(id, pw);
+		MemberDto dto = dao.checkLogin(id, pw);
+		
+		if(dto == null) {
+			msg="아이디나 비밀번호 오류";
+			url="Member";
+		}else {
+			msg= dto.getName()+"hello";
+			url= "Index";
+			HttpSession session = request.getSession();
+			session.setAttribute("sessionId", id);
+			session.setAttribute("sessionName", dto.getName());
+			session.setAttribute("sessionLevel", dto.getMemberlevel());
+			session.setMaxInactiveInterval(60 * 60 *3);
+			
+		}
+		
+		request.setAttribute("t_msg", msg);
+		request.setAttribute("t_url", url);
+		
+		//String acount = dao.checkAcount(id);
+	
+				
 		
 	}
 

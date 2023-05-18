@@ -76,26 +76,53 @@ public class MemberDao {
     }
     
     //로그인
-    public String loginCheck(String id, String pw) {
-    	String name = "";
-    	String query = "select name from bike_이주형_member\r\n" + 
-    				"where id='"+id+"' and password = '"+pw+"';";
+    public MemberDto checkLogin(String id, String pw) {
+    	//MemberDto dto = new MemberDto();
+    	MemberDto dto = null;
+    	String query = "select name, memberlevel from bike_이주형_member\r\n" + 
+    				"where id='"+id+"' and password = '"+pw+"'";
     	
     	try {
     		con = DBConnection.getConnection();
     		ps  = con.prepareStatement(query);
     		rs  = ps.executeQuery();
     		if(rs.next()) {
-    			name = rs.getNString("name");
+    			String name = rs.getNString("name");
+    			String level = rs.getString("memberlevel");
+    			dto = new MemberDto(name, level);
+    			
     		}
     	}catch(SQLException e) {
-    		System.out.println("loginCheck(): "+query);
+    		System.out.println("checkLogin(): "+query);
     		e.printStackTrace();
     	}finally {
     		DBConnection.closeDB(con, ps, rs);
     	}
     	
-    	return name;
+    	return dto;
+    }
+    
+    //계정 유무(탈퇴확인)
+    public String checkAcount(String id) {
+    	String result = "";
+    	String query = "select acount from bike_이주형_member\r\n" + 
+    				"where id = '"+id+"'";
+    	
+    	try {
+    		con = DBConnection.getConnection();
+    		ps  = con.prepareStatement(query);
+    		rs  = ps.executeQuery();
+    		if(rs.next()) {
+    			result = rs.getNString("acount");
+    		}
+    	}catch(SQLException e) {
+    		System.out.println("checkAcount(): "+query);
+    		e.printStackTrace();
+    	}finally {
+    		DBConnection.closeDB(con, ps, rs);
+    	}
+    	
+    	return result;
     }
     
 }

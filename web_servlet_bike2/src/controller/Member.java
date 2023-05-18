@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import command_member.MemberLogin;
+import command_member.MemberLogout;
 import command_member.Memberjoin;
 
 /**
@@ -47,11 +48,20 @@ public class Member extends HttpServlet {
 			viewPage = "common_alert.jsp";
 		//로그인	
 		}else if(gubun.equals("memberLogin")) {
-			MemberLogin member = new MemberLogin();
-			
 			viewPage = "member/member_login.jsp";
-			
+		//로그인 디비	
+		}else if(gubun.equals("goLogin")) {
+			MemberLogin member = new MemberLogin();
+			member.execute(request);
+			viewPage = "common_alert.jsp";
+		//로그아웃	
+		}else if(gubun.equals("memberLogout")) {
+			MemberLogout member = new MemberLogout();
+			member.execute(request);
+			viewPage = "common_alert.jsp";
 		}
+		
+	
 		
 		RequestDispatcher rd = request.getRequestDispatcher(viewPage);
 		rd.forward(request, response);

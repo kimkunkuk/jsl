@@ -2,12 +2,17 @@ package dto;
 
 public class MemberDto {
 	private String id, name, pw, area, address, mobile_1, mobile_2, mobile_3, gender, hobby_t, hobby_r, hobby_s, 
-				   reg_date;
+				   reg_date, update_date, login_date, memberlevel;
 	
 	private int pwlen;
 	
 	
+	
+	public MemberDto() {
+		super();
+	}
 
+	//회원가입용
 	public MemberDto(String id, String name, String pw, String area, String address, String mobile_1, String mobile_2,
 			String mobile_3, String gender, String hobby_t, String hobby_r, String hobby_s, String reg_date,
 			int pwlen) {
@@ -26,6 +31,13 @@ public class MemberDto {
 		this.hobby_s = hobby_s;
 		this.reg_date = reg_date;
 		this.pwlen = pwlen;
+	}
+	
+	//로그인용
+	public MemberDto(String name, String memberlevel) {
+		super();
+		this.name = name;
+		this.memberlevel = memberlevel;
 	}
 
 	public String getId() {
@@ -82,6 +94,18 @@ public class MemberDto {
 
 	public int getPwlen() {
 		return pwlen;
+	}
+
+	public String getUpdate_date() {
+		return update_date;
+	}
+
+	public String getLogin_date() {
+		return login_date;
+	}
+
+	public String getMemberlevel() {
+		return memberlevel;
 	}
 	
 	
