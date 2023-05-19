@@ -1,5 +1,6 @@
 <%@ page pageEncoding="utf-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> 
+
 <html>
 <head>
 <link href="css/sub_c.css" rel="stylesheet">
@@ -38,7 +39,13 @@
 		<div id="b_top_menu">
 			<ul class="top_menu">
 				<li><a href="javascript:goWork('memberJoin')">Join</a></li>
+				<c:if test="${empty sessionId }">
 				<li><a href="javascript:goWork('memberLogin')">LogIn</a></li>
+				</c:if>
+				<c:if test="${not empty sessionId }">
+				<li><a href="javascript:goWork('memberLogout')">MyInfo </a></li>
+				<li><a href="javascript:goWork('memberLogout')">LogOUt</a></li>
+				</c:if>
 				<li><a href="Index"><i class="fa fa-home"></i>Home</a></li>
 			</ul>
 		</div>	

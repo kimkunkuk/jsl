@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> 
+
 <html>
 <head>
 <link href="css/index_c.css" rel="stylesheet">
@@ -91,6 +92,7 @@
 						<li><a href="javascript:goWork('memberJoin')">Join</a></li>
 					</c:if>
 					<c:if test="${!empty sessionId }">
+						<li><a href="javascript:goWork('memberMyinfo')">MyInfo </a></li>
 						<li><a href="javascript:goWork('memberLogout')">LogOut </a></li>
 					</c:if>
 					
@@ -160,7 +162,7 @@
 						<li>menu6 sub5</li>
 					</ul>
 				</div>
-				<div class="menu1"><a href="notice/notice_list.html"><span class="maintitle">Notice & News</span></a>
+				<div class="menu1"><a href="Notice"><span class="maintitle">Notice & News</span></a>
 					<ul>
 						<li><a href="notice/notice_list.html">Notice</a></li>
 						<li><a href="">News</a></li>

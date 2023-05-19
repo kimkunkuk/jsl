@@ -105,7 +105,7 @@ public class MemberDao {
     //계정 유무(탈퇴확인)
     public String checkAcount(String id) {
     	String result = "";
-    	String query = "select acount from bike_이주형_member\r\n" + 
+    	String query = "select account from bike_이주형_member\r\n" + 
     				"where id = '"+id+"'";
     	
     	try {
@@ -113,10 +113,10 @@ public class MemberDao {
     		ps  = con.prepareStatement(query);
     		rs  = ps.executeQuery();
     		if(rs.next()) {
-    			result = rs.getNString("acount");
+    			result = rs.getNString("account");
     		}
     	}catch(SQLException e) {
-    		System.out.println("checkAcount(): "+query);
+    		System.out.println("checkAccount(): "+query);
     		e.printStackTrace();
     	}finally {
     		DBConnection.closeDB(con, ps, rs);
@@ -125,4 +125,75 @@ public class MemberDao {
     	return result;
     }
     
+    //로그인 데이트
+    public int setLoginTime(String id, String date) {
+    	int result = 0;
+    	String query = "update bike_이주형_member\r\n" + 
+    			"set Login_date = to_date('"+date+"','yyyy-MM-dd hh24:mi:ss')\r\n" + 
+    			"where id = '"+id+"'";
+    	
+    	try {
+			con = DBConnection.getConnection();
+			ps  = con.prepareStatement(query);
+			result = ps.executeUpdate();
+		}catch(SQLException e) {
+			System.out.println(query);
+			e.printStackTrace();
+		}finally {
+			DBConnection.closeDB(con, ps, rs);
+		}
+		return result;
+    }
+    
+    //멤버 인포 뷰
+	public MemberDto getMemberInfo(String id) {
+		MemberDto dto = null;
+		String query = "select id, name, password, area, address, mobile_1, mobile_2, mobile_3, gender,\r\n" + 
+				"hobby_travel, hobby_reading, hobby_sports, pwlen, \r\n" + 
+				"to_char(reg_date,'yyyy-MM-dd hh24:mi:ss') as reg_date, \r\n" + 
+				"to_char(update_date,'yyyy-MM-dd hh24:mi:ss') as update_date,\r\n" + 
+				"to_char(login_date,'yyyy-MM-dd hh24:mi:ss') as login_date,\r\n" + 
+				"to_char(account_del_date,'yyyy-MM-dd hh24:mi:ss') as account_del_date, \r\n" + 
+				"memberlevel, account\r\n" + 
+				"from bike_이주형_member \r\n" + 
+				"where id = '"+id+"'";
+		
+		try {
+			con = DBConnection.getConnection();
+			ps  = con.prepareStatement(query);
+			rs  = ps.executeQuery();
+			if(rs.next()) {
+				String name = rs.getNString("name");
+				String area = rs.getNString("area");
+				String pw = rs.getNString("password");
+				String address = rs.getNString("address");
+				String mobile_1 = rs.getNString("mobile_1");
+				String mobile_2 = rs.getNString("mobile_2");
+				String mobile_3 = rs.getNString("mobile_3");
+				String gender = rs.getNString("gender");
+				String hobby_t = rs.getNString("hobby_travel");
+				String hobby_r = rs.getNString("hobby_reading");
+				String hobby_s = rs.getNString("hobby_sports");
+				int pwlen = rs.getInt("pwlen");
+				String reg_date = rs.getNString("reg_date");
+				String update_date = rs.getNString("update_date");
+				String login_date = rs.getNString("login_date");
+				String account_del_date = rs.getNString("account_del_date");
+				String memberlevel = rs.getNString("memberlevel");
+				String account = rs.getNString("account");
+				
+				dto = new MemberDto(id, name, pw, area, address, 
+						mobile_1, mobile_2, mobile_3, gender, hobby_t, hobby_r, hobby_s, 
+						reg_date, update_date, login_date, account_del_date, memberlevel, account, pwlen);
+				
+			}
+		}catch(SQLException e){
+			System.out.println(query);
+			e.printStackTrace();
+		}finally {
+			DBConnection.closeDB(con, ps, rs);
+		}
+	
+		return dto;
+	}
 }

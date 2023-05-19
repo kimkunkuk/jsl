@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import common.CommonExcute;
+import common.CommonUtil;
 import dao.MemberDao;
 import dto.MemberDto;
 
@@ -37,14 +38,15 @@ public class MemberLogin implements CommonExcute {
 			session.setAttribute("sessionId", id);
 			session.setAttribute("sessionName", dto.getName());
 			session.setAttribute("sessionLevel", dto.getMemberlevel());
-			session.setMaxInactiveInterval(60 * 60 *3);
+			session.setMaxInactiveInterval(60 * 60 * 3);
 			
+			int result = dao.setLoginTime(id,CommonUtil.getTodayTime());
 		}
 		
 		request.setAttribute("t_msg", msg);
 		request.setAttribute("t_url", url);
 		
-		//String acount = dao.checkAcount(id);
+		//String account = dao.checkAccount(id);
 	
 				
 		
