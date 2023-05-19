@@ -71,6 +71,12 @@
 		bike.action="Member";
 		bike.submit();
 	}
+	function goNotice(val){
+		bike.t_gubun.value=val;
+		bike.method="post";
+		bike.action="Notice";
+		bike.submit();
+	}
 </script>
 </head>
 <body>
@@ -162,7 +168,7 @@
 						<li>menu6 sub5</li>
 					</ul>
 				</div>
-				<div class="menu1"><a href="Notice"><span class="maintitle">Notice & News</span></a>
+				<div class="menu1"><a href="javascript:goNotice('noticeList')"><span class="maintitle">Notice & News</span></a>
 					<ul>
 						<li><a href="notice/notice_list.html">Notice</a></li>
 						<li><a href="">News</a></li>
