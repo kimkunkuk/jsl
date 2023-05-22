@@ -196,4 +196,59 @@ public class MemberDao {
 	
 		return dto;
 	}
+	
+	//비밀번호 체크
+	public int getPasswordCheck(String id, String pw) {
+		int result = 0;
+		String query = "select count(*) as count \r\n" + 
+				"from bike_이주형_member\r\n" + 
+				"where id='"+id+"' and password='"+pw+"'";
+		
+		try {
+			con = DBConnection.getConnection();
+			ps  = con.prepareStatement(query);
+			rs  = ps.executeQuery();
+			if(rs.next()) {
+				result = rs.getInt("count");
+			}
+		}catch(SQLException e) {
+			System.out.println(query);
+			e.printStackTrace();
+		}finally {
+			DBConnection.closeDB(con, ps, rs);
+		}
+		
+		return result;
+	}
+	
+	//회원정보 수정
+	public int memberUpdate(MemberDto dto) {
+		int result = 0;
+		String query = "update bike_이주형_member\r\n" + 
+				"set name = '"+dto.getName()+"',\r\n" + 
+				"area = '"+dto.getArea()+"',\r\n" + 
+				"address = '"+dto.getAddress()+"',\r\n" + 
+				"mobile_1 = '"+dto.getMobile_1()+"',\r\n" + 
+				"mobile_2 = '"+dto.getMobile_2()+"',\r\n" + 
+				"mobile_3 = '"+dto.getMobile_3()+"',\r\n" + 
+				"gender = '"+dto.getGender()+"',\r\n" + 
+				"hobby_travel = '"+dto.getHobby_t()+"',\r\n" + 
+				"hobby_reading = '"+dto.getHobby_r()+"',\r\n" + 
+				"hobby_sports = '"+dto.getHobby_s()+"',\r\n" + 
+				"update_date = to_date('"+dto.getUpdate_date()+"','yyyy-MM-dd hh24:mi:ss')\r\n" + 
+				"where id = '"+dto.getId()+"'";
+		
+		try {
+			con = DBConnection.getConnection();
+			ps  = con.prepareStatement(query);
+			result = ps.executeUpdate();
+		}catch(SQLException e) {
+			System.out.println("멤버수정"+query);
+			e.printStackTrace();
+		}finally {
+			DBConnection.closeDB(con, ps, rs);
+		}
+		
+		return result;
+	}
 }

@@ -12,6 +12,29 @@ public class MemberDto {
 		super();
 	}
 
+	
+	
+	//회원 수정용
+	public MemberDto(String id, String name, String area, String address, String mobile_1, String mobile_2,
+			String mobile_3, String gender, String hobby_t, String hobby_r, String hobby_s, String update_date) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.area = area;
+		this.address = address;
+		this.mobile_1 = mobile_1;
+		this.mobile_2 = mobile_2;
+		this.mobile_3 = mobile_3;
+		this.gender = gender;
+		this.hobby_t = hobby_t;
+		this.hobby_r = hobby_r;
+		this.hobby_s = hobby_s;
+		this.update_date = update_date;
+	}
+
+
+
+
 	//회원가입용
 	public MemberDto(String id, String name, String pw, String area, String address, String mobile_1, String mobile_2,
 			String mobile_3, String gender, String hobby_t, String hobby_r, String hobby_s, String reg_date,

@@ -42,7 +42,7 @@
 							<div class="fl_clear"><label for="scrtNo">비밀번호</label><input name="t_pw" id="scrtNo" type="password" onkeypress="if( event.keyCode==13 ){memberLogin()}"></div>
 							<a class="btn_login btn_Blue" href="javascript:memberLogin()">로그인</a>
 							
-							<div><input name="al" ></div>
+							
 						</form>
 					</div>
 				   

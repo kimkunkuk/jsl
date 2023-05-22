@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import command_member.MemberInfo;
 import command_member.MemberLogin;
 import command_member.MemberLogout;
+import command_member.MemberUpdate;
 import command_member.Memberjoin;
 
 /**
@@ -70,7 +71,16 @@ public class Member extends HttpServlet {
 			}else {
 				viewPage = "member/member_info.jsp";
 			}
-		
+		//내정보 수정
+		}else if(gubun.equals("memberUpadteForm")) {
+			MemberInfo member = new MemberInfo();
+			member.execute(request);
+			viewPage="member/member_update.jsp";
+		//내정보 수정 디비
+		}else if(gubun.equals("memberUpadte")) {
+			MemberUpdate member = new MemberUpdate();
+			member.execute(request);
+			viewPage = "common_alert.jsp";
 		}
 		
 		RequestDispatcher rd = request.getRequestDispatcher(viewPage);

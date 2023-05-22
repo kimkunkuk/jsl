@@ -7,8 +7,9 @@
 
  %>
 <script>
-	
-</script>	
+
+</script>
+
 		<div id="b_left">
 			<P>MEMBER</P>
 			<ul>
@@ -17,8 +18,8 @@
 				<li><a href="javascript:goWork('memberJoin')"><span class="fnt"><i class="fas fa-apple-alt"></i></span> JOIN</a></li>
 			</ul>
 		</div>
-		<form name="join">
-		<input type="hidden" name="t_gubun">
+		
+		
 		<div id="b_right">
 			<p class="n_title">
 				MEMBER INFORMATION
@@ -113,11 +114,11 @@
 			</table>
 			
 			<div class="buttonGroup_center">
-				<a href="javascript:goUpdateForm()" class="butt">수정</a>
+				<a href="javascript:goWork('memberUpadteForm')" class="butt">수정</a>
 				<a href="javascript:goDelete()" class="butt">탈퇴</a>
 			</div>	
 		</div>	
-		</form>
+		
 <%@ include file="../common_footer.jsp" %>
 
 
