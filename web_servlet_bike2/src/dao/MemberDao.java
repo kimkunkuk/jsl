@@ -251,4 +251,49 @@ public class MemberDao {
 		
 		return result;
 	}
+
+	//회원탈퇴
+	public int memberDelete(String id) {
+		int result = 0;
+		String query = "update bike_이주형_member\r\n" + 
+				"set account = 'n'\r\n" + 
+				"where id = '"+id+"'";
+		
+		try {
+			con = DBConnection.getConnection();
+			ps  = con.prepareStatement(query);
+			result = ps.executeUpdate();
+		}catch(SQLException e) {
+			System.out.println("회원탈퇴 memberDelete(): "+query);
+			e.printStackTrace();
+		}finally {
+			DBConnection.closeDB(con, ps, rs);
+		}
+		
+		return result;
+	}
+	//비밀번호 찾기
+	public String getCheckMember(String id, String mobile_1, String mobile_2, String mobile_3, String email) {
+		String name = "";
+		String query = "select name from bike_이주형_member\r\n" + 
+				"where id = '"+id+"' \r\n" + 
+				"and mobile_1 = '"+mobile_1+"'\r\n" + 
+				"and mobile_2 = '"+mobile_2+"'\r\n" + 
+				"and mobile_3 = '"+mobile_3+"'";
+		
+		try {
+			con = DBConnection.getConnection();
+			ps  = con.prepareStatement(query);
+			rs	= ps.executeQuery();
+			if(rs.next()) {
+				name = rs.getString("name");
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			DBConnection.closeDB(con, ps, rs);
+		}
+		
+		return name;
+	}
 }

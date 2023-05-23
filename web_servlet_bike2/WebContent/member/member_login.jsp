@@ -22,7 +22,7 @@
 			<P>MEMBER</P>
 			<ul>
 				<li><a href="javascript:goWork('memberLogin')"><span class="fnt"><i class="fas fa-apple-alt"></i></span>LOGIN</a></li>
-				<li><a href="">ID / PASSWORD</a></li>
+				<li><a href="javascript:goWork('memberPasswordFind')">ID / PASSWORD</a></li>
 				<li><a href="javascript:goWork('memberJoin')"> JOIN</a></li>
 			</ul>
 		</div>
@@ -42,6 +42,7 @@
 							<div class="fl_clear"><label for="scrtNo">비밀번호</label><input name="t_pw" id="scrtNo" type="password" onkeypress="if( event.keyCode==13 ){memberLogin()}"></div>
 							<a class="btn_login btn_Blue" href="javascript:memberLogin()">로그인</a>
 							
+							<a href="javascript:goWork('memberPasswordFind')">비밀번호 찾기</a>
 							
 						</form>
 					</div>

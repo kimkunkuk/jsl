@@ -7,7 +7,15 @@
 
  %>
 <script>
-
+	function goDelete(val){
+		var tf = confirm("정막 삭제?")
+		if(tf == true){
+			del.t_gubun.value=val;
+			del.method="post";
+			del.action="Member";
+			del.submit();
+		}
+	}
 </script>
 
 		<div id="b_left">
@@ -18,7 +26,9 @@
 				<li><a href="javascript:goWork('memberJoin')"><span class="fnt"><i class="fas fa-apple-alt"></i></span> JOIN</a></li>
 			</ul>
 		</div>
-		
+		<form name="del">
+			<input type="hidden" name="t_id" value=" ${t_dto.getId()}">
+		</form>
 		
 		<div id="b_right">
 			<p class="n_title">
@@ -115,7 +125,7 @@
 			
 			<div class="buttonGroup_center">
 				<a href="javascript:goWork('memberUpadteForm')" class="butt">수정</a>
-				<a href="javascript:goDelete()" class="butt">탈퇴</a>
+				<a href="javascript:goDelete('memberDelete')" class="butt">탈퇴</a>
 			</div>	
 		</div>	
 		

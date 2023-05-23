@@ -9,9 +9,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import command_member.MemberDelete;
 import command_member.MemberInfo;
 import command_member.MemberLogin;
 import command_member.MemberLogout;
+import command_member.MemberPasswordSend;
 import command_member.MemberUpdate;
 import command_member.Memberjoin;
 
@@ -79,6 +81,22 @@ public class Member extends HttpServlet {
 		//내정보 수정 디비
 		}else if(gubun.equals("memberUpadte")) {
 			MemberUpdate member = new MemberUpdate();
+			member.execute(request);
+			viewPage = "common_alert.jsp";
+			
+		//멤버 탈퇴	
+		}else if(gubun.equals("memberDelete")) {
+			MemberDelete member = new MemberDelete();
+			member.execute(request);
+			viewPage = "common_alert.jsp";
+			
+		//비밀번호 찾기 폼
+		}else if(gubun.equals("memberPasswordFind")) {
+			viewPage = "member/member_passwordfind.jsp";
+		
+		//비밀번호 메일 보내기
+		}else if(gubun.equals("memberPasswordSend")) {
+			MemberPasswordSend member = new MemberPasswordSend();
 			member.execute(request);
 			viewPage = "common_alert.jsp";
 		}
