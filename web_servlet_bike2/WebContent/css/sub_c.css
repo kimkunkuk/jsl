@@ -397,6 +397,13 @@
     color: #333;
     font-family: 'NGothicB';
 }
+.login_form input {
+    border: 1px solid #ddd;
+    padding :0 5px;
+    height: 40px;
+    width: 210px;
+    background: #ececec;
+}
 .login_form .t_id {
     border: 1px solid #ddd;
     padding :0 5px;

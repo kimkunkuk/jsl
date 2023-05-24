@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Random;
 
 import common.DBConnection;
 import dto.MemberDto;
@@ -15,20 +16,7 @@ public class MemberDao {
 	PreparedStatement ps  = null;
 	ResultSet 		  rs  = null;
 	
-	//암호화
-		public String encryptSHA256(String value) throws NoSuchAlgorithmException{
-	        String encryptData ="";
-	         
-	        MessageDigest sha = MessageDigest.getInstance("SHA-256");
-	        sha.update(value.getBytes());
-	 
-	        byte[] digest = sha.digest();
-	        for (int i=0; i<digest.length; i++) {
-	            encryptData += Integer.toHexString(digest[i] &0xFF).toUpperCase();
-	        }
-	         
-	        return encryptData;
-	    }
+	
 	
 	//회원등록
 	public int memberSave(MemberDto dto) {
@@ -295,5 +283,66 @@ public class MemberDao {
 		}
 		
 		return name;
+	}
+	
+	//암호화
+			public String encryptSHA256(String value) throws NoSuchAlgorithmException{
+		        String encryptData ="";
+		         
+		        MessageDigest sha = MessageDigest.getInstance("SHA-256");
+		        sha.update(value.getBytes());
+		 
+		        byte[] digest = sha.digest();
+		        for (int i=0; i<digest.length; i++) {
+		            encryptData += Integer.toHexString(digest[i] &0xFF).toUpperCase();
+		        }
+		         
+		        return encryptData;
+		    }
+	
+	/*	새로운 비밀번호 생성*/
+	public String getNewPassword(int pwLength) {
+        StringBuffer temp =new StringBuffer();
+        Random rnd = new Random();
+        
+        for(int i=0;i<pwLength;i++)
+        {
+            int rIndex = rnd.nextInt(3);
+            switch (rIndex) {
+            case 0:
+                // a-z
+                temp.append((char) ((int) (rnd.nextInt(26)) + 97));
+                break;
+            case 1:
+                // A-Z
+                temp.append((char) ((int) (rnd.nextInt(26)) + 65));
+                break;
+            case 2:
+                // 0-9
+                temp.append((rnd.nextInt(10)));
+                break;
+            }
+//            System.out.println("pw :"+temp.toString());	
+        }
+        return temp.toString();		
+	}
+
+	public int setMemberPassword(String id, String newPassword) {
+		int result = 0;
+		String query = "update bike_이주형_member\r\n" + 
+					"set password = '"+newPassword+"'\r\n" + 
+					"where id = '"+id+"'";
+		
+		try {
+			con = DBConnection.getConnection();
+			ps  = con.prepareStatement(query);
+			result = ps.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			DBConnection.closeDB(con, ps, rs);
+		}
+		
+		return result;
 	}
 }
