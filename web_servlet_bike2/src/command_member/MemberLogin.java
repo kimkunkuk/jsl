@@ -27,8 +27,9 @@ public class MemberLogin implements CommonExcute {
 		String msg ="", url ="";
 		
 		MemberDto dto = dao.checkLogin(id, pw);
+		String account = dao.checkAccount(id);
 		
-		if(dto == null) {
+		if(dto == null || account.equals("n")) {
 			msg="아이디나 비밀번호 오류";
 			url="Member";
 		}else {

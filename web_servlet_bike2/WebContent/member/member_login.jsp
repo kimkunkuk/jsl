@@ -40,9 +40,10 @@
 							<input type="hidden" name="t_gubun" value="login">
 							<div class="fl_clear"><label for="mbrId">아이디</label><input name="t_id" id="mbrId" type="text" onkeypress="if( event.keyCode==13 ){goPw()}"></div>
 							<div class="fl_clear"><label for="scrtNo">비밀번호</label><input name="t_pw" id="scrtNo" type="password" onkeypress="if( event.keyCode==13 ){memberLogin()}"></div>
+							
 							<a class="btn_login btn_Blue" href="javascript:memberLogin()">로그인</a>
 							
-							<a href="javascript:goWork('memberPasswordFind')">비밀번호 찾기</a>
+							
 							
 						</form>
 					</div>

@@ -14,6 +14,7 @@ import command_member.MemberInfo;
 import command_member.MemberLogin;
 import command_member.MemberLogout;
 import command_member.MemberPasswordSend;
+import command_member.MemberPasswordUpdate;
 import command_member.MemberUpdate;
 import command_member.Memberjoin;
 
@@ -97,6 +98,16 @@ public class Member extends HttpServlet {
 		//비밀번호 메일 보내기
 		}else if(gubun.equals("memberPasswordSend")) {
 			MemberPasswordSend member = new MemberPasswordSend();
+			member.execute(request);
+			viewPage = "common_alert.jsp";
+		
+		//비밀번호 수정 폼
+		}else if(gubun.equals("memberPassword")) {
+			viewPage = "member/member_passwordChange.jsp";
+			
+		//비밀번호 수정 저장	
+		}else if(gubun.equals("memberPasswordUpdate")){
+			MemberPasswordUpdate member = new MemberPasswordUpdate();
 			member.execute(request);
 			viewPage = "common_alert.jsp";
 		}

@@ -26,6 +26,7 @@ public class MemberPasswordSend implements CommonExcute {
 			msg = "회원 정보가 없습니다.";
 		}else {
 			String newPassword = dao.getNewPassword(4);
+			int pwlen = newPassword.length();
 			String sendPassword = newPassword;
 			System.out.println(newPassword);
 			try {
@@ -34,17 +35,17 @@ public class MemberPasswordSend implements CommonExcute {
 			}catch(NoSuchAlgorithmException e) {
 				e.printStackTrace();
 			}
-			int result = dao.setMemberPassword(id, newPassword);
+			int result = dao.setMemberPassword(id, newPassword, pwlen);
 			if(result != 1) {
 				msg = "비밀번호 발송오류";
 			}else {
 				
 				String mailSet_Server="smtp.naver.com"; // 보내는 메일 server
-				String mailSet_ID="l0501jh";        // 보내는 메일 ID
+				String mailSet_ID="";        // 보내는 메일 ID
 				String mailSet_PW="";        // 보내는 메일 비밀번호
 				
 				String mailFromName ="JSL인재개발원";            // 보내는 사람 이름
-				String mailFromAddress ="l0501jh@naver.com"; // 보내는 메일 주소
+				String mailFromAddress =""; // 보내는 메일 주소
 				
 				String mailTo    = email;           // 받는  메일 주소
 				String mailTitle =" JSL에서 비밀번호를 재발송 합니다.";   // 메일 제목

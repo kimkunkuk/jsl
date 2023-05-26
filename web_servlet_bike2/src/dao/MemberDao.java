@@ -91,7 +91,7 @@ public class MemberDao {
     }
     
     //계정 유무(탈퇴확인)
-    public String checkAcount(String id) {
+    public String checkAccount(String id) {
     	String result = "";
     	String query = "select account from bike_이주형_member\r\n" + 
     				"where id = '"+id+"'";
@@ -241,10 +241,10 @@ public class MemberDao {
 	}
 
 	//회원탈퇴
-	public int memberDelete(String id) {
+	public int memberDelete(String id, String delDate) {
 		int result = 0;
 		String query = "update bike_이주형_member\r\n" + 
-				"set account = 'n'\r\n" + 
+				"set account = 'n', account_del_date = to_date('"+delDate+"','yyyy-MM-dd hh24:mi:ss')  \r\n" + 
 				"where id = '"+id+"'";
 		
 		try {
@@ -326,11 +326,13 @@ public class MemberDao {
         }
         return temp.toString();		
 	}
-
-	public int setMemberPassword(String id, String newPassword) {
+	
+	//메일 비밀번호 초기화, 비밀번호 수정
+	public int setMemberPassword(String id, String newPassword, int pwlen) {
 		int result = 0;
 		String query = "update bike_이주형_member\r\n" + 
 					"set password = '"+newPassword+"'\r\n" + 
+					" ,pwlen = '"+pwlen+"'"+
 					"where id = '"+id+"'";
 		
 		try {
@@ -345,4 +347,6 @@ public class MemberDao {
 		
 		return result;
 	}
+	
+	
 }

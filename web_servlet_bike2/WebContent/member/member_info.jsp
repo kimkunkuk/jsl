@@ -16,6 +16,13 @@
 			del.submit();
 		}
 	}
+	function goPasswordForm(val){
+		del.t_gubun.value=val;
+		del.method="post";
+		del.action="Member";
+		del.submit();
+	}
+	
 </script>
 
 		<div id="b_left">
@@ -27,7 +34,8 @@
 			</ul>
 		</div>
 		<form name="del">
-			<input type="hidden" name="t_id" value=" ${t_dto.getId()}">
+			<input type="hidden" name="t_id" value="${t_dto.getId()}">
+			<input type="hidden" name="t_gubun">
 		</form>
 		
 		<div id="b_right">
@@ -125,6 +133,7 @@
 			
 			<div class="buttonGroup_center">
 				<a href="javascript:goWork('memberUpadteForm')" class="butt">수정</a>
+				<a href="javascript:goPasswordForm('memberPassword')" class="butt">비밀번호 변경</a>
 				<a href="javascript:goDelete('memberDelete')" class="butt">탈퇴</a>
 			</div>	
 		</div>	

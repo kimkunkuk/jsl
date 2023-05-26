@@ -397,6 +397,12 @@
     color: #333;
     font-family: 'NGothicB';
 }
+.login_form .pwLabel{
+	display: inline-block;
+    width: 125px;
+    color: #333;
+    font-family: 'NGothicB';
+}
 .login_form input {
     border: 1px solid #ddd;
     padding :0 5px;
@@ -435,6 +441,20 @@
 	background: #b4b4b0;
 	color: #fff;
 }	
+.login_form .pwButton{
+    position: absolute;
+    top: 0;
+    right: -110px;
+    display: block;
+    width: 106px;
+    height: 130px;
+    line-height: 130px;
+    text-align: center;
+    font-size: 18px;
+	background: #b4b4b0;
+	color: #fff;
+}
+
 	
 	
 	
