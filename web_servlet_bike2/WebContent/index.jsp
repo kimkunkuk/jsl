@@ -168,9 +168,9 @@
 						<li>menu6 sub5</li>
 					</ul>
 				</div>
-				<div class="menu1"><a href="javascript:goNotice('noticeList')"><span class="maintitle">Notice & News</span></a>
+				<div class="menu1"><a href="javascript:goNotice('List')"><span class="maintitle">Notice & News</span></a>
 					<ul>
-						<li><a href="notice/notice_list.html">Notice</a></li>
+						<li><a href="javascript:goNotice('List')"">Notice</a></li>
 						<li><a href="">News</a></li>
 						<li><a href="">Q & A</a></li>
 						<li><a href="">Free Board</a></li>
