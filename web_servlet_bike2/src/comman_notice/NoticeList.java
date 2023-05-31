@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 
 import common.CommonExcute;
+import common.CommonUtil;
 import dao.NoticeDao;
 import dto.NoticeDto;
 
@@ -28,7 +29,7 @@ public class NoticeList implements CommonExcute {
 		
 		/* paging 설정 start*/
 		int totalCount = dao.getTotalCount(select,search);
-		int list_setup_count = line;  //한페이지당 출력 행수 
+		int list_setup_count = 5;  //한페이지당 출력 행수 
 		int pageNumber_count = 3;  //한페이지당 출력 페이지 갯수
 		
 		String nowPage = request.getParameter("t_nowPage");
@@ -46,9 +47,21 @@ public class NoticeList implements CommonExcute {
 		int end   = current_page * list_setup_count;
 		/* paging 설정 end*/
 		
+		int order = totalCount - ((current_page - 1) * list_setup_count);
+		
+		
+		
 		ArrayList<NoticeDto> arr = dao.getNoticeListPage(select, search, start, end);
 		
+		String paging = CommonUtil.pageListPost(current_page, total_page, pageNumber_count);
+		
+		
 		request.setAttribute("t_arr", arr);
+		request.setAttribute("t_totalCount", totalCount);
+		request.setAttribute("t_search", search);
+		request.setAttribute("t_select", select);
+		request.setAttribute("t_paging", paging);
+		request.setAttribute("t_order", order);
 	}
 
 }

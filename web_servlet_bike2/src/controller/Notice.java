@@ -34,7 +34,7 @@ public class Notice extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		String gubun = request.getParameter("t_gubun");
 		String viewPage="";
-		if(gubun == null) gubun="noticeList"; //t_gubun 이 받아오는게 없으면 null
+		if(gubun == null) gubun="List"; //t_gubun 이 받아오는게 없으면 null
 		
 		if(gubun.equals("List")) {
 			NoticeList notice = new NoticeList(); 
@@ -49,6 +49,8 @@ public class Notice extends HttpServlet {
 			viewPage="notice/notice_view.jsp";
 		}else if(gubun.equals("updateForm")) {
 			viewPage="notice/notice_update.jsp";
+		}else if(gubun.equals("etc")) {
+			viewPage="notice/etc_list.jsp";
 		}
 		
 		RequestDispatcher rd = request.getRequestDispatcher(viewPage);

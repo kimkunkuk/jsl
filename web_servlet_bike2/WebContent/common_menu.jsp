@@ -6,6 +6,6 @@
 				<li><a href="News">NEWS</a></li>
 				<li><a href="Qna">Q & A</a></li>
 				<li><a href="Freeboard">FREE BOARD</a></li>
-				<li><a href="Etc">ETC</a></li>
+				<li><a href="javascript:goNotice('etc')">ETC</a></li>
 			</ul>
 </div>

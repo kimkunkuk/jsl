@@ -3,8 +3,13 @@
 <%@ include file="../common_header.jsp" %>
 <%@ include file="../common_menu.jsp" %>		
 <script>
-	function goSearch(val){
-		notice.t_gubun.value = val;
+	function goSearch(){
+		notice.method="post";
+		notice.action="Notice";
+		notice.submit();
+	}
+	function goPage(pageNumber){
+		notice.t_nowPage.value = pageNumber;
 		notice.method="post";
 		notice.action="Notice";
 		notice.submit();
@@ -15,22 +20,18 @@
 				NOTICE
 			</p>
 			<div class="record_group record_group_left">
-				<p><i class="fa-solid fa-bell"></i> 총게시글<span> 4 </span>건</p>
+				<p><i class="fa-solid fa-bell"></i> 총게시글<span>${t_totalCount}</span>건</p>
 			</div>			
 			<p class="select_box select_box_right">
 			<form name="notice">
-			<input type="hidden" name="t_gubun">
-				<select name="t_line" class="select" style="width:100px;" onchange="changeLine()">
-					<option value="5" >5줄 보기</option>
-					<option value="10" >10줄 보기</option>
-				</select>
+			<input type="hidden" name="t_nowPage">
 				<select name="t_select" class="sel_box">
-					<option value="" selected >Title</option>
-					<option value=""  >Content</option>
+					<option value="n.title" <c:if test="${t_select eq 'n.title'}"> selected </c:if> >Title</option>
+					<option value="n.content" <c:if test="${t_select eq 'n.content'}"> selected </c:if> >Content</option>
 				</select>
-				<input type="text" name="t_search" value="" class="sel_text">
+				<input type="text" name="t_search" value="${t_search }" class="sel_text">
 
-				<button type="button" onclick="goSearch('List')" class="sel_button"><i class="fa fa-search"></i> SEARCH</button>
+				<button type="button" onclick="goSearch()" class="sel_button"><i class="fa fa-search"></i> SEARCH</button>
 			</form>
 			</p>			
 			
@@ -54,11 +55,21 @@
 					</tr>
 				</thead>
 				<tbody>
+				
+				<c:set var="number" value="${t_order}"></c:set> 
+				
 				<c:forEach items="${t_arr }" var="arr">
 					<tr>
-						<td></td>
-						<td class="t_left"><a href="notice_view.html">${arr.getTitle() }</a></td>
-						<td><img src="../images/clip.png"></td>
+						<td>
+							${number}
+							<c:set var="number" value="${number-1}"></c:set> 
+						</td>
+						<td class="t_left"><a href="#">${arr.getTitle() }</a></td>
+						<td>
+							<c:if test="${not empty arr.getAttach()  }">
+							<img src="images/clip.png">
+							</c:if>
+						</td>
 						<td>${arr.getReg_name() }</td>
 						<td>${arr.getReg_date() }</td>
 						<td>${arr.getHit() }</td>
@@ -68,6 +79,12 @@
 			</table>
 			
 			<div class="paging">
+				${t_paging}
+			
+			
+			
+			
+			<!-- 
 				<a href=""><i class="fa fa-angle-double-left"></i></a>
 				<a href=""><i class="fa fa-angle-left"></i></a>
 				<a href="" class="active">1</a>
@@ -77,7 +94,9 @@
 				<a href="">5</a>
 				<a href=""><i class="fa fa-angle-right"></i></a>
 				<a href=""><i class="fa fa-angle-double-right"></i></a>
+			-->
 				<a href="notice_write.html" class="write">글쓰기</a>
+				
 			</div>
 		</div>	
 	</div>
