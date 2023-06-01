@@ -9,8 +9,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import comman_notice.EtcList;
 import comman_notice.NoticeList;
 import common.CommonExcute;
+import common.commonToday;
 
 /**
  * Servlet implementation class Notice
@@ -36,20 +38,32 @@ public class Notice extends HttpServlet {
 		String viewPage="";
 		if(gubun == null) gubun="List"; //t_gubun 이 받아오는게 없으면 null
 		
+		//목록
 		if(gubun.equals("List")) {
 			NoticeList notice = new NoticeList(); 
 			//CommonExcute notice = new NoticeList(); NoticeList 부모가 commonexcute 
 			notice.execute(request);
 			viewPage="notice/notice_list.jsp";
+			
+		//글쓰기 폼	
 		}else if(gubun.equals("writeForm")) {
+			CommonExcute notice = new commonToday();
+			notice.execute(request);
 			viewPage="notice/notice_write.jsp";
+			
 		}else if(gubun.equals("save")) {
 			viewPage="common_alert.jsp";
+			
 		}else if(gubun.equals("view")) {
 			viewPage="notice/notice_view.jsp";
+			
 		}else if(gubun.equals("updateForm")) {
 			viewPage="notice/notice_update.jsp";
+			
+		//etc 목록
 		}else if(gubun.equals("etc")) {
+			EtcList Etc = new EtcList();
+			Etc.execute(request);
 			viewPage="notice/etc_list.jsp";
 		}
 		

@@ -6,22 +6,17 @@ import javax.servlet.http.HttpServletRequest;
 
 import common.CommonExcute;
 import common.CommonUtil;
-import dao.NoticeDao;
-import dto.NoticeDto;
+import dao.EtcDao;
+import dto.EtcDto;
 
-public class NoticeList implements CommonExcute {
+public class EtcList implements CommonExcute {
 
 	@Override
 	public void execute(HttpServletRequest request) {
-		NoticeDao dao = new NoticeDao();
+		EtcDao dao = new EtcDao();
+		
 		String select = request.getParameter("t_select");
 		String search = request.getParameter("t_search");
-		//String t_line = request.getParameter("t_line");
-//		if(t_line == null){
-//			t_line = "10";
-//		}
-//		int line = Integer.parseInt(t_line);
-		
 		if(select == null) {
 			select = "n.title";
 			search = "";
@@ -48,20 +43,14 @@ public class NoticeList implements CommonExcute {
 		int end   = current_page * list_setup_count;
 		/* paging 설정 end*/
 		
-		int order = totalCount - ((current_page - 1) * list_setup_count);
-		
-
-		ArrayList<NoticeDto> arr = dao.getNoticeListPage(select, search, start, end);
+		ArrayList<EtcDto> arr = dao.getEtcList(select, search, start, end);
 		
 		String paging = CommonUtil.pageListPost(current_page, total_page, pageNumber_count);
 		
-		
 		request.setAttribute("t_arr", arr);
 		request.setAttribute("t_totalCount", totalCount);
-		request.setAttribute("t_search", search);
-		request.setAttribute("t_select", select);
 		request.setAttribute("t_paging", paging);
-		request.setAttribute("t_order", order);
+		
 	}
 
 }

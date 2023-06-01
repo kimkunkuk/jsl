@@ -14,16 +14,25 @@
 		notice.action="Notice";
 		notice.submit();
 	}
+	function goWriteFrom(){
+		noti.t_gubun.value="writeForm";
+		noti.method="post";
+		noti.action="Notice";
+		noti.submit();
+	}
 </script>
+<form name="noti">
+	<input type="hidden" name="t_gubun">
+</form>
 		<div id="b_right">
 			<p class="n_title">
 				NOTICE
 			</p>
+			<form name="notice">
 			<div class="record_group record_group_left">
 				<p><i class="fa-solid fa-bell"></i> 총게시글<span>${t_totalCount}</span>건</p>
-			</div>			
+			</div>		
 			<p class="select_box select_box_right">
-			<form name="notice">
 			<input type="hidden" name="t_nowPage">
 				<select name="t_select" class="sel_box">
 					<option value="n.title" <c:if test="${t_select eq 'n.title'}"> selected </c:if> >Title</option>
@@ -32,9 +41,9 @@
 				<input type="text" name="t_search" value="${t_search }" class="sel_text">
 
 				<button type="button" onclick="goSearch()" class="sel_button"><i class="fa fa-search"></i> SEARCH</button>
-			</form>
-			</p>			
 			
+			</p>			
+			</form>
 			<table class="boardList">
 				<colgroup>
 					<col width="5%">
@@ -94,9 +103,12 @@
 				<a href="">5</a>
 				<a href=""><i class="fa fa-angle-right"></i></a>
 				<a href=""><i class="fa fa-angle-double-right"></i></a>
-			-->
-				<a href="notice_write.html" class="write">글쓰기</a>
 				
+				세션은 한번 셋어트리뷰트 해놓으면 jsp 에서 모든곳에서 샤용가능
+			-->
+			<c:if test="${sessionLevel eq 'admin' }"> 
+				<a href="javascript:goWriteFrom()" class="write">글쓰기</a>
+			</c:if>	
 			</div>
 		</div>	
 	</div>
