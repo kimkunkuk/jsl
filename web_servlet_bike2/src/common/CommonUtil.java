@@ -54,5 +54,16 @@ public class CommonUtil {
 	 			strList = strList + "<a href=javascript:goPage('"+curpage+"') ><i class='fa fa-angle-double-right'></i></a>";
 	 		}
 	 		return strList;
-}
+	 	}
+	 
+		//공지사항 첨부 경로 
+		public static String getFile_dir_notice() {
+			String noticeDir = "C:/Users/admin/git/jsl/web_servlet_bike2/WebContent/attach/notice"; 
+			return noticeDir;
+		}
+		
+		public static String getFile_dir_news() {
+			String newsDir = "C:/Users/admin/git/jsl/web_servlet_bike2/WebContent/attach/news"; 
+			return newsDir;
+		}
 }

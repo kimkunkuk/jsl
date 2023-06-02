@@ -57,9 +57,6 @@
 			}	
 		}
 		
-		
-		
-		
 		notice.method="post";
 		notice.action="db_notice_save.jsp";
 		notice.submit()

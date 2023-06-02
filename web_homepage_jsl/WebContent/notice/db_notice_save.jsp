@@ -30,7 +30,7 @@
 		String content = mpr.getParameter("t_content");
 		content = content.replaceAll("\'", "\''");
 		String attach = mpr.getFilesystemName("t_attach"); //input 타입이 file 인거 이 메소드로 받아오기
-		if(attach == null) attach = "";
+		if(attach == null) attach = ""; 
 		String reg_id = sessionId;
 		//String reg_date = CommonUtil.getToday();
 		String reg_date = CommonUtil.getTodayTime();

@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import comman_notice.EtcList;
 import comman_notice.NoticeList;
+import comman_notice.NoticeSave;
 import common.CommonExcute;
 import common.commonToday;
 
@@ -35,6 +36,7 @@ public class Notice extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		String gubun = request.getParameter("t_gubun");
+		System.out.println(gubun);
 		String viewPage="";
 		if(gubun == null) gubun="List"; //t_gubun 이 받아오는게 없으면 null
 		
@@ -50,8 +52,11 @@ public class Notice extends HttpServlet {
 			CommonExcute notice = new commonToday();
 			notice.execute(request);
 			viewPage="notice/notice_write.jsp";
-			
+		
+		//게시글 등록
 		}else if(gubun.equals("save")) {
+			NoticeSave notice = new NoticeSave();
+			notice.execute(request);
 			viewPage="common_alert.jsp";
 			
 		}else if(gubun.equals("view")) {
