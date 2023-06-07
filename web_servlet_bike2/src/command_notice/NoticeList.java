@@ -1,4 +1,4 @@
-package comman_notice;
+package command_notice;
 
 import java.util.ArrayList;
 

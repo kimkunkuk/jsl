@@ -46,7 +46,6 @@ public class NoticeDto {
 		this.title = title;
 		this.content = content;
 		this.attach = attach;
-		this.reg_id = reg_id;
 		this.reg_name = reg_name;
 		this.reg_date = reg_date;
 		this.hit = hit;

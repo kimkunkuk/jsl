@@ -20,9 +20,17 @@
 		noti.action="Notice";
 		noti.submit();
 	}
+	function goView(no){
+		noti.t_gubun.value="view";
+		noti.t_no.value= no;
+		noti.method="post";
+		noti.action="Notice";
+		noti.submit();
+	}
 </script>
 <form name="noti">
 	<input type="hidden" name="t_gubun">
+	<input type="hidden" name="t_no">
 </form>
 		<div id="b_right">
 			<p class="n_title">
@@ -73,7 +81,7 @@
 							${number}
 							<c:set var="number" value="${number-1}"></c:set> 
 						</td>
-						<td class="t_left"><a href="#">${arr.getTitle() }</a></td>
+						<td class="t_left"><a href="javascript:goView('${arr.getNo()}')">${arr.getTitle()}</a></td>
 						<td>
 							<c:if test="${not empty arr.getAttach()  }">
 							<img src="images/clip.png">

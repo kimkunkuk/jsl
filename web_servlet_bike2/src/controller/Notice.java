@@ -9,9 +9,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import comman_notice.EtcList;
-import comman_notice.NoticeList;
-import comman_notice.NoticeSave;
+import command_notice.EtcList;
+import command_notice.NoticeList;
+import command_notice.NoticeSave;
+import command_notice.NoticeView;
 import common.CommonExcute;
 import common.commonToday;
 
@@ -58,10 +59,14 @@ public class Notice extends HttpServlet {
 			NoticeSave notice = new NoticeSave();
 			notice.execute(request);
 			viewPage="common_alert.jsp";
-			
+		
+		//상세보기 
 		}else if(gubun.equals("view")) {
+			NoticeView notice = new NoticeView();
+			notice.execute(request);
 			viewPage="notice/notice_view.jsp";
-			
+		
+		//게시글 수정
 		}else if(gubun.equals("updateForm")) {
 			viewPage="notice/notice_update.jsp";
 			
