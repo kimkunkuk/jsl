@@ -68,6 +68,8 @@ public class Notice extends HttpServlet {
 		
 		//게시글 수정
 		}else if(gubun.equals("updateForm")) {
+			NoticeView notice = new NoticeView();
+			notice.execute(request);
 			viewPage="notice/notice_update.jsp";
 			
 		//etc 목록

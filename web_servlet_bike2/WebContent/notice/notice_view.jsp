@@ -10,6 +10,13 @@
 		noti.action="Notice";
 		noti.submit();
 	}
+	function goUpdate(no){
+		noti.t_gubun.value="updateForm";
+		noti.t_no.value= no;
+		noti.method="post";
+		noti.action="Notice";
+		noti.submit();
+	}
 </script>		
 <form name="noti">
 	<input type="hidden" name="t_gubun">
@@ -95,7 +102,7 @@
 			</div>			
 			<div class="buttonGroup">
 				<a href="" class="butt">Delete</a>
-				<a href="notice_update.html" class="butt">Update</a>
+				<a href="javascript:goUpdate('${t_dto.getNo()}')" class="butt">Update</a>
 				<a href="notice_list.html" class="butt">List</a>
 			</div>	
 		</div>	
