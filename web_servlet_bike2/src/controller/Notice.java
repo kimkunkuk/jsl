@@ -28,7 +28,7 @@ public class Notice extends HttpServlet {
      */
     public Notice() {
         super();
-        // TODO Auto-generated constructor stub
+        // TODO Auto-generated  constructor stub
     }
 
 	/**
