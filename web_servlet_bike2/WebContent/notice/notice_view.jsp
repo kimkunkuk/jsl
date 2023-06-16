@@ -103,7 +103,7 @@
 			<div class="buttonGroup">
 				<a href="" class="butt">Delete</a>
 				<a href="javascript:goUpdate('${t_dto.getNo()}')" class="butt">Update</a>
-				<a href="notice_list.html" class="butt">List</a>
+				<a href="Notice" class="butt">List</a>
 			</div>	
 		</div>	
 	</div>

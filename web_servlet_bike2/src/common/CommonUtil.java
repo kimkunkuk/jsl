@@ -58,12 +58,12 @@ public class CommonUtil {
 	 
 		//공지사항 첨부 경로 
 		public static String getFile_dir_notice() {
-			String noticeDir = "C:/Users/admin/git/jsl/web_servlet_bike2/WebContent/attach/notice"; 
+			String noticeDir = "C:/java/jsl/web_servlet_bike2/WebContent/attach/notice";
 			return noticeDir;
 		}
 		
 		public static String getFile_dir_news() {
-			String newsDir = "C:/Users/admin/git/jsl/web_servlet_bike2/WebContent/attach/news"; 
+			String newsDir = "C:/java/jsl/web_servlet_bike2/WebContent/attach/news"; 
 			return newsDir;
 		}
 }

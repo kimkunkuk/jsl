@@ -29,7 +29,7 @@
 							<td colspan="3">
 								<c:if test="${not empty t_dto.getAttach()}">
 								${t_dto.getAttach()}&nbsp;&nbsp;
-								삭제&nbsp;<input type="checkbox">
+								삭제&nbsp;<input type="checkbox" name="t_delFile" value="${t_dto.getAttach()}">
 								</c:if>
 								<input type="file" class="input600">
 							</td>

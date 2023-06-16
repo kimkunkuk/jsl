@@ -37,8 +37,9 @@ public class Notice extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		String gubun = request.getParameter("t_gubun");
-		System.out.println(gubun);
+		//System.out.println(gubun);
 		String viewPage="";
+		request.setAttribute("t_ma", "notice"); //왼쪽 메뉴 사과 아이콘 
 		if(gubun == null) gubun="List"; //t_gubun 이 받아오는게 없으면 null
 		
 		//목록

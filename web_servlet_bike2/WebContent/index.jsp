@@ -196,7 +196,7 @@
 				<li><a href="">Maintenance</a></li>
 				<li><a href="">Parts</a></li>
 				<li><a href="">Tires & Tubes</a></li>
-				<li><a href="notice/notice_list.html">Notice & News</a></li>
+				<li><a href="javascript:goNotice('List')">Notice & News</a></li>
 			</ul>
 		</div>
 		

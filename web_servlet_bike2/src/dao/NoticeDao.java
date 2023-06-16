@@ -51,7 +51,7 @@ ResultSet 		  rs = null;
 					"(no, title, content, attach, reg_id, reg_date)\r\n" + 
 					"values\r\n" + 
 					"('"+dto.getNo()+"','"+dto.getTitle()+"','"+dto.getContent()+"',"
-							+ "'"+dto.getAttach()+"','"+dto.getReg_id()+"',to_date('"+dto.getReg_date()+"','yyyy-MM-dd hh:mi:ss'))";
+							+ "'"+dto.getAttach()+"','"+dto.getReg_id()+"',to_date('"+dto.getReg_date()+"','yyyy-MM-dd hh24:mi:ss'))";
 		try {
 			con = DBConnection.getConnection();
 			ps  = con.prepareStatement(query);
