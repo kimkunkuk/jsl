@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import command_notice.EtcList;
+import command_notice.NoticeDelete;
 import command_notice.NoticeList;
 import command_notice.NoticeSave;
 import command_notice.NoticeView;
@@ -78,6 +79,12 @@ public class Notice extends HttpServlet {
 			EtcList Etc = new EtcList();
 			Etc.execute(request);
 			viewPage="notice/etc_list.jsp";
+		
+		//게시글 삭제
+		}else if(gubun.equals("delete")) {
+			NoticeDelete notice = new NoticeDelete();
+			notice.execute(request);
+			viewPage="common_alert.jsp";
 		}
 		
 		RequestDispatcher rd = request.getRequestDispatcher(viewPage);

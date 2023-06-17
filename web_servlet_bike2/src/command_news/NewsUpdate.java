@@ -27,7 +27,7 @@ public class NewsUpdate implements CommonExcute {
 			MultipartRequest mpr =
 					new MultipartRequest(request, newsDir, maxSize, "utf-8", new DefaultFileRenamePolicy());
 			
-			String no = dao.getMaxNo();
+			String no = mpr.getParameter("t_no");
 			String title = mpr.getParameter("t_title");
 			String content = mpr.getParameter("t_content");
 			String attach = mpr.getFilesystemName("t_attach");

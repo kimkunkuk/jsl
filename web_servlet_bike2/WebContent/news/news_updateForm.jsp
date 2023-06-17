@@ -89,7 +89,7 @@
 			</p>
 			<form name="news" enctype="multipart/form-data">
 			<input type="hidden" name="t_no" value="${t_dto.getNo()}">
-			<input type="hidden" name="t_oriAttach" value="${t_dto.getAttach()}">
+			<input type="hidden" name="t_ori_attach" value="${t_dto.getAttach()}">
  			<table class="boardForm">
 				<colgroup>
 					<col width="15%">

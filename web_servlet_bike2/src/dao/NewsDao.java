@@ -213,9 +213,9 @@ ResultSet 		  rs  = null;
 				"set title = '"+dto.getTitle()+"',\r\n" + 
 				"content = '"+dto.getContent()+"',\r\n" +
 				"attach = '"+dto.getAttach()+"',\r\n" +
-				"update_date = to_date('"+dto.getUpdate_date()+"', 'yyyy-MM-dd hh:mi:ss')\r\n" + 
+				"update_date = to_date('"+dto.getUpdate_date()+"', 'yyyy-MM-dd hh24:mi:ss')\r\n" + 
 				"where no = '"+dto.getNo()+"'";
-		
+		System.out.println(query);
 		try {
 			con = DBConnection.getConnection();
 			ps  = con.prepareStatement(query);
