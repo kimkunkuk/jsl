@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import command_admin.MemberList;
+import command_admin.MemberView;
 
 /**
  * Servlet implementation class Admin
@@ -36,10 +37,17 @@ public class Admin extends HttpServlet {
 		String viewPage = "";
 		request.setAttribute("t_ma", "admin");
 		
+		//멤버리스트
 		if(gubun.equals("admin")) {
 			MemberList admin = new MemberList();
 			admin.execute(request);
 			viewPage = "admin/memberList.jsp";
+			
+		//상세뷰	
+		}else if(gubun.equals("view")) {
+			MemberView admin = new MemberView();
+			admin.execute(request);
+			viewPage = "admin/memberView.jsp";
 		}
 		
 		RequestDispatcher rd = request.getRequestDispatcher(viewPage);

@@ -14,7 +14,18 @@
 		adm.action="Admin";
 		adm.submit();
 	}
-</script>	
+	function goView(id){
+		admin.t_gubun.value = "view";
+		admin.t_id.value = id;
+		admin.method="post";
+		admin.action="Admin";
+		admin.submit();
+	}
+</script>
+<form name="admin">
+	<input type="hidden" name="t_id">
+	<input type="hidden" name="t_gubun">
+</form>	
 		<div id="b_right">
 			<p class="n_title">
 				MEMBER LIST
@@ -72,7 +83,7 @@
 							${number}
 							<c:set var="number" value="${number-1}"></c:set> 
 						</td>
-						<td class="t_left" style="text-align:center;"><a href="#">${arr.getId()}</a></td>
+						<td class="t_left" style="text-align:center;"><a href="javascript:goView('${arr.getId()}')">${arr.getId()}</a></td>
 						<td>${arr.getName()}</td>
 						<td>${arr.getArea()}</td>
 						<td>
