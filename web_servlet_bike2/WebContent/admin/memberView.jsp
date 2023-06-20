@@ -3,7 +3,9 @@
 <%@ include file = "../common_header.jsp" %>
 <%@ include file="../common_menu_admin.jsp" %>
 <script>
-
+	function goBack(){
+		history.back();
+	}
 </script>
 		
 		<div id="b_right">
@@ -104,7 +106,9 @@
 			  </tbody>
 			 
 			</table>
-			
+			<div class="buttonGroup_center">
+				<a href="javascript:goBack()" class="butt">목록</a>
+			</div>	
 		</div>	
 		
 <%@ include file="../common_footer.jsp" %>

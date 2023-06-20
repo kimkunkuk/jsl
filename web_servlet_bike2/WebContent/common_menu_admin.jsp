@@ -1,5 +1,16 @@
 <%@ page pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> 
+<script>
+	function goMenu(val){
+		menu.t_gubun.value = val;
+		menu.method="post";
+		menu.action="Admin";
+		menu.submit();
+	}
+</script>
+<form name="menu">
+	<input type="hidden" name="t_gubun">
+</form>
 <div id="b_left">
 			<P>NOTICE & NEWS</P>
 			<ul>
@@ -12,7 +23,7 @@
 				</a>
 				</li>
 				<li>
-				<a href="Product">
+				<a href="javascript:goMenu('product')">
 					<c:if test="${t_ma eq 'product' }">
 					<span class="fnt"><i class="fas fa-apple-alt"></i></span> 
 					</c:if>
