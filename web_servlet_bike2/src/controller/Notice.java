@@ -13,6 +13,7 @@ import command_notice.EtcList;
 import command_notice.NoticeDelete;
 import command_notice.NoticeList;
 import command_notice.NoticeSave;
+import command_notice.NoticeUpdate;
 import command_notice.NoticeView;
 import common.CommonExcute;
 import common.commonToday;
@@ -83,6 +84,12 @@ public class Notice extends HttpServlet {
 		//게시글 삭제
 		}else if(gubun.equals("delete")) {
 			NoticeDelete notice = new NoticeDelete();
+			notice.execute(request);
+			viewPage="common_alert.jsp";
+		
+		//업데이트 저장
+		}else if(gubun.equals("updateSave")) {
+			NoticeUpdate notice = new NoticeUpdate();
 			notice.execute(request);
 			viewPage="common_alert.jsp";
 		}

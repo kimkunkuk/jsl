@@ -77,6 +77,12 @@
 		bike.action="Notice";
 		bike.submit();
 	}
+	function goAdmin(val){
+		bike.t_gubun.value=val;
+		bike.method="post";
+		bike.action="Admin";
+		bike.submit();
+	}
 </script>
 </head>
 <body>
@@ -93,9 +99,12 @@
 			<div id="b_top_menu">
 				<ul class="top_menu">
 					<li><a href="" class="allclick"><i class="fas fa-bars"></i></a></li>
+					<c:if test="${sessionLevel eq 'admin' }">
+					<li><a href="javascript:goAdmin('admin')">Admin</a></li>
+					</c:if>
 					<c:if test="${empty sessionId }">
-						<li><a href="javascript:goWork('memberLogin')">Login </a></li>
 						<li><a href="javascript:goWork('memberJoin')">Join</a></li>
+						<li><a href="javascript:goWork('memberLogin')">Login </a></li>
 					</c:if>
 					<c:if test="${!empty sessionId }">
 						<li><a href="javascript:goWork('memberMyinfo')">MyInfo </a></li>

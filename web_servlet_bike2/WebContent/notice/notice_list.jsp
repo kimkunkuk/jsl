@@ -73,10 +73,11 @@
 				</thead>
 				<tbody>
 				
-				<c:set var="number" value="${t_order}"></c:set> 
+				
 				
 				<c:forEach items="${t_arr }" var="arr">
 					<tr>
+					<c:set var="number" value="${t_order}"></c:set> 
 						<td>
 							${number}
 							<c:set var="number" value="${number-1}"></c:set> 

@@ -28,6 +28,12 @@
 		bike.action="Member";
 		bike.submit();
 	}
+	function goAdmin(val){
+		bike.t_gubun.value=val;
+		bike.method="post";
+		bike.action="Admin";
+		bike.submit();
+	}
 	function goNotice(val){
 		bike.t_gubun.value=val;
 		bike.method="post";
@@ -50,12 +56,15 @@
 
 		<div id="b_top_menu">
 			<ul class="top_menu">
-				<li><a href="javascript:goWork('memberJoin')">Join</a></li>
+				<c:if test="${sessionLevel eq 'admin' }">
+					<li><a href="javascript:goAdmin('admin')">Admin</a></li>
+				</c:if>
 				<c:if test="${empty sessionId }">
+				<li><a href="javascript:goWork('memberJoin')">Join</a></li>
 				<li><a href="javascript:goWork('memberLogin')">LogIn</a></li>
 				</c:if>
 				<c:if test="${not empty sessionId }">
-				<li><a href="javascript:goWork('memberLogout')">MyInfo </a></li>
+				<li><a href="javascript:goWork('memberMyinfo')">MyInfo </a></li>
 				<li><a href="javascript:goWork('memberLogout')">LogOUt</a></li>
 				</c:if>
 				<li><a href="Index"><i class="fa fa-home"></i>Home</a></li>

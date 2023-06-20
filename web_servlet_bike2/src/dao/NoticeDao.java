@@ -264,6 +264,7 @@ ResultSet 		  rs = null;
 					"content = '"+dto.getContent()+"',\r\n" + 
 					"attach = '"+dto.getAttach()+"'\r\n" + 
 					"where no = '"+dto.getNo()+"'";
+		System.out.println(query);
 		try {
 			con = DBConnection.getConnection();
 			ps  = con.prepareStatement(query);

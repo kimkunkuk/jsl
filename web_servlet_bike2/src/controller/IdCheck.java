@@ -30,6 +30,7 @@ public class IdCheck extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.setContentType("text/html; charset=utf-8");
 		request.setCharacterEncoding("utf-8");
 		MemberDao dao = new MemberDao();
 		PrintWriter out = response.getWriter();
@@ -38,10 +39,22 @@ public class IdCheck extends HttpServlet {
 		String msg = "";
 		
 		int count = dao.checkId(id);
-		if(count != 1) msg ="사용가능";
-		else if(count == 1) msg ="사용불가";
-		response.setContentType("text/html; charset=utf-8");
+		if(count != 1) msg ="y";
+		else if(count == 1) msg ="n";
+		
 		out.print(msg);
+		
+//		response.setContentType("text/html; charset=utf-8");
+//		response.setCharacterEncoding("utf-8");
+//		String id= request.getParameter("t_id");
+//		MemberDao dao = new MemberDao();
+//		int count= dao.checkId(id);
+//		String msg= "";
+//		if(count == 0) msg="사용 가능";
+//		else if(count == 1) msg="이미 존재하는 ID";
+//		else msg="서버 오류";
+//		PrintWriter out = response.getWriter();
+//		out.print(msg);
 		
 	}
 

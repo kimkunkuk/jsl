@@ -79,7 +79,7 @@
 				
 				join.t_idcheck.value = result;
 				
-				if(result == "사용가능"){
+				if(result == "y"){
 					join.t_idcheckValue.value = join.t_id.value;
 				}else{
 					join.t_idcheckValue.value = "";
