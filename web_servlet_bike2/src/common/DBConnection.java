@@ -18,8 +18,8 @@ public class DBConnection {
 		}
 		
 		if(goIng){
-			//String db_url		="jdbc:oracle:thin:@jsl-704:1521:xe";
-			String db_url		="jdbc:oracle:thin:@182.217.138.73:1521:xe"; // 외부접속
+			String db_url		="jdbc:oracle:thin:@jsl-704:1521:xe"; //내부접속
+			//String db_url		="jdbc:oracle:thin:@182.217.138.73:1521:xe"; // 외부접속
 			String db_user		="track11";
 			String db_password	="1234";
 			

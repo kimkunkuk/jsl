@@ -4,9 +4,15 @@
 <%@ include file="../common_menu_admin.jsp" %>
 <script>
 	function goSave(){
+		if(checkValue(pro.t_title,"제목입력!")) return;
+		if(checkValue(pro.t_content,"내용입력!")) return;
+		if(checkValue(pro.t_price,"가격입력!")) return;
+		if(checkValue(pro.t_p_size,"사이즈입력!")) return;
+		if(checkValue(pro.t_level,"레벨선택!")) return;
+		if(checkValue(pro.t_attach,"사진첨부!")) return;
 		/***  첨부파일 검사 ***/
 		// 1.확장자 검사
-		var fileName = news.t_attach.value;
+		var fileName = pro.t_attach.value;
 		if(fileName != ""){ //  C:\fakepath\img_1.png
 			var pathFileName = fileName.lastIndexOf(".")+1;    //확장자 제외한 경로+파일명
 			var extension = (fileName.substr(pathFileName)).toLowerCase();	//확장자명
@@ -18,7 +24,7 @@
 		}
 
 		// 2.첨부 용량 체크	
-		var file = news.t_attach;
+		var file = pro.t_attach;
 		var fileMaxSize  = 10; // 첨부 최대 용량 설정
 		if(file.value !=""){
 			// 사이즈체크
@@ -41,9 +47,9 @@
 			}	
 		}
 		//noti.t_gubun.value = "save"; 첨부파일 폼 형식 이여서 겟파라미터 안되서 못넘김 그래서  get방식으로 직접 넘기든가 해야댐 아니면 인풋에 벨류값 주던가 
-		news.method="post";
-		news.action="News?t_gubun=save";
-		news.submit();
+		pro.method="post";
+		pro.action="Product?t_gubun=save";
+		pro.submit();
 		
 	}
 </script>
@@ -79,9 +85,9 @@
 </script>		
 		<div id="b_right">
 			<p class="n_title">
-				NEWS
+				PRODUCT
 			</p>
-			<form name="news" enctype="multipart/form-data">
+			<form name="pro" enctype="multipart/form-data">
 			<table class="boardForm">
 				<colgroup>
 					<col width="15%">
@@ -97,6 +103,25 @@
 					<tr>
 						<th>Content</th>
 						<td colspan="3"><textarea name="t_content" class="textArea_H250"></textarea></td>
+					</tr>
+					<tr>
+						<th>Price</th>
+						<td><input type="text" name="t_price" class=""></td>
+						<th>Size</th>
+						<td><input type="text" name="t_p_size" class=""></td>
+					</tr>
+					<tr>
+						<th>Level</th>
+						<td colspan="3">
+							<select name="t_level" id="mbrClCd">
+                                <option value="">선택</option>
+                                    <option value="A">A</option>
+                                
+                                    <option value="B">B</option>
+                                
+                                    <option value="C">C</option>
+                            </select>
+						</td>
 					</tr>
 <style>
 	#preview-image{
@@ -129,7 +154,7 @@
 			</form>
 			<div class="buttonGroup">
 				<a href="javascript:goSave()" class="butt">Save</a>
-				<a href="notice_list.html" class="butt">List</a>
+				<a href="" class="butt">List</a>
 			</div>	
 		</div>	
 	</div>

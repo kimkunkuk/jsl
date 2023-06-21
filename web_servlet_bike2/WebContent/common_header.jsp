@@ -41,10 +41,10 @@
 		bike.action="Notice";
 		bike.submit();
 	}
-	function goNews(val){
+	function goProduct(val){
 		bike.t_gubun.value=val;
 		bike.method="post";
-		bike.action="News";
+		bike.action="Product";
 		bike.submit();
 	}
 </script>

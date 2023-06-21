@@ -66,4 +66,9 @@ public class CommonUtil {
 			String newsDir = "C:/java/jsl/web_servlet_bike2/WebContent/attach/news"; 
 			return newsDir;
 		}
+		public static String getFild_dir_product() {
+			String productDir = "C:/Users/admin/git/JSL/web_servlet_bike2/WebContent/attach/product";
+			return productDir;
+		}
+		
 }

@@ -2,9 +2,15 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> 
 <script>
 	function goMenu(val){
+		var menuName= "";
+		if(val == "admin"){
+			menuName = "Admin";
+		}else if(val == "product"){
+			menuName = "Product";
+		}
 		menu.t_gubun.value = val;
 		menu.method="post";
-		menu.action="Admin";
+		menu.action= menuName;
 		menu.submit();
 	}
 </script>

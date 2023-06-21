@@ -35,9 +35,7 @@ public class Admin extends HttpServlet {
 		String gubun = request.getParameter("t_gubun");
 		if(gubun == null) gubun = "admin";
 		String viewPage = "";
-		String ma = "admin";
-		if(gubun.equals("product")) ma = "product";
-		request.setAttribute("t_ma", ma);
+		request.setAttribute("t_ma", "admin");
 		
 		//멤버리스트
 		if(gubun.equals("admin")) {
@@ -51,14 +49,6 @@ public class Admin extends HttpServlet {
 			admin.execute(request);
 			viewPage = "admin/memberView.jsp";
 			
-		//프로덕트 리스트	
-		}else if(gubun.equals("product")) {
-			
-			viewPage = "admin/product.jsp";
-		
-		//프로덕트 글쓰기 폼
-		}else if(gubun.equals("writeForm")) {
-			viewPage = "admin/product_write.jsp";
 		}
 		
 		RequestDispatcher rd = request.getRequestDispatcher(viewPage);
