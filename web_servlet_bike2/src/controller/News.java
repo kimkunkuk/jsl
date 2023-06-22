@@ -41,6 +41,7 @@ public class News extends HttpServlet {
 		if(gubun == null) gubun = "list";
 		String viewPage = "";
 		request.setAttribute("t_ma", "news"); //왼쪽 메뉴 사과 아이콘 
+		
 		if(gubun.equals("list")) {
 			CommonExcute news = new NewsList();
 			news.execute(request);

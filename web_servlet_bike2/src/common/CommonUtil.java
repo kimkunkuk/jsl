@@ -57,6 +57,11 @@ public class CommonUtil {
 	 	}
 	 
 		//공지사항 첨부 경로 
+	 
+	 /*
+	  * 
+	  *
+	  * */
 		public static String getFile_dir_notice() {
 			String noticeDir = "C:/java/jsl/web_servlet_bike2/WebContent/attach/notice";
 			return noticeDir;
@@ -67,7 +72,10 @@ public class CommonUtil {
 			return newsDir;
 		}
 		public static String getFild_dir_product() {
-			String productDir = "C:/Users/admin/git/JSL/web_servlet_bike2/WebContent/attach/product";
+			//String productDir = "C:/Users/admin/git/JSL/web_servlet_bike2/WebContent/attach/product";
+			String productDir = "C:/track11_LJH/work_project/.metadata/.plugins/org.eclipse.wst.server.core/tmp1/wtpwebapps/web_servlet_bike2/attach/product";
+			
+			//네비게이터 에 있는 폴더에는 안보임 경로 저기로 하면 사진 등록시 바로 목록에서 나올수있음 새로고침 필요없이
 			return productDir;
 		}
 		

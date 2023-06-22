@@ -8,6 +8,19 @@
 		pro.action="Product";
 		pro.submit();
 	}
+	function goPage(pageNumber){
+		pro.t_nowPage.value = pageNumber;
+		pro.method="post";
+		pro.action="Product";
+		pro.submit();
+	}
+	function goView(no){
+		view.t_no.value = no;
+		view.t_gubun.value = "view";
+		view.method="post";
+		view.action="Product";
+		view.submit();
+	}
 </script>
 <style>
 	.view_img{
@@ -15,6 +28,10 @@
 		height:100px;
 	}
 </style>
+<form name="view">
+	<input type="hidden" name="t_no">
+	<input type="hidden" name="t_gubun">
+</form>
 <div id="b_right">
 			<p class="n_title">
 				PRODUCT
@@ -23,13 +40,13 @@
 				<p><i class="fa-solid fa-bell"></i> 총게시글<span> ${t_totalcount} </span>건</p>
 			</div>
 			<form name="pro">	
-			<p class="select_box select_box_right">
 			<input type="hidden" name="t_nowPage">
+			<p class="select_box select_box_right">
 				<select name="t_level" >
 					<option value="">레벨선택</option>
-					<option value="A">A</option>
-					<option value="B">B</option>
-					<option value="C">C</option>
+					<option value="A" <c:if test="${t_level eq 'A'}"> selected </c:if> >A</option>
+					<option value="B" <c:if test="${t_level eq 'B'}"> selected </c:if> >B</option>
+					<option value="C" <c:if test="${t_level eq 'C'}"> selected </c:if> >C</option>
 				</select>
 				<select name="t_select" class="sel_box">
 					<option value="title" <c:if test="${t_select eq 'title'}"> selected </c:if> >제품명</option>

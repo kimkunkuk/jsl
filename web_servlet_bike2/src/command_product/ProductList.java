@@ -57,6 +57,7 @@ public class ProductList implements CommonExcute {
 		request.setAttribute("t_paging", paging);
 		request.setAttribute("t_search", search);
 		request.setAttribute("t_select", select);
+		request.setAttribute("t_level", level);
 	}
 
 }

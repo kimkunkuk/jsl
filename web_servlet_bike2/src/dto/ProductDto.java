@@ -1,9 +1,13 @@
 package dto;
 
 public class ProductDto {
-	private String no, title, content, attach, reg_date, price, p_size, id, p_level;
+	private String no, title, content, attach, reg_date, price, p_size, id, p_level, name;
 	private int hit;
 	
+	
+	public ProductDto() {
+		super();
+	}
 	
 	//저장용
 	public ProductDto(String no, String title, String content, String attach, String reg_date, String price,
@@ -30,12 +34,34 @@ public class ProductDto {
 		this.p_level = p_level;
 		this.price = price;
 	}
-
 	
+	//게시글 상세보기 용
+	public ProductDto(String no, String title, String content, String attach, String reg_date, String price,
+			String p_size, String id, String p_level, String name, int hit) {
+		super();
+		this.no = no;
+		this.title = title;
+		this.content = content;
+		this.attach = attach;
+		this.reg_date = reg_date;
+		this.price = price;
+		this.p_size = p_size;
+		this.id = id;
+		this.p_level = p_level;
+		this.name = name;
+		this.hit = hit;
+	}
+	
+	//이전글, 다음글 용
+	public ProductDto(String no, String title) {
+		super();
+		this.no = no;
+		this.title = title;
+	}
+
 	public String getNo() {
 		return no;
 	}
-	
 	public String getTitle() {
 		return title;
 	}
@@ -59,6 +85,9 @@ public class ProductDto {
 	}
 	public String getP_level() {
 		return p_level;
+	}
+	public String getName() {
+		return name;
 	}
 	public int getHit() {
 		return hit;

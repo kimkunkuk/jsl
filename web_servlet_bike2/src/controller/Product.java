@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import command_product.ProductList;
 import command_product.ProductSave;
+import command_product.ProductUpdate;
+import command_product.ProductView;
 import common.commonToday;
 
 /**
@@ -53,6 +55,24 @@ public class Product extends HttpServlet {
 		//글 세이브
 		}else if(gubun.equals("save")) {
 			ProductSave product = new ProductSave();
+			product.execute(request);
+			viewPage = "common_alert.jsp";
+			
+		//게시글 뷰	
+		}else if(gubun.equals("view")) {
+			ProductView product = new ProductView();
+			product.execute(request);
+			viewPage = "product/product_view.jsp";
+			
+		//업데이트 폼
+		}else if(gubun.equals("update")) {
+			ProductView product = new ProductView();
+			product.execute(request);
+			viewPage = "product/product_update.jsp";
+			
+		//업데이트 세이브
+		}else if(gubun.equals("updateSave")) {
+			ProductUpdate product = new ProductUpdate();
 			product.execute(request);
 			viewPage = "common_alert.jsp";
 		}
