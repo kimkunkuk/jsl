@@ -17,6 +17,15 @@
 		view.action="Product";
 		view.submit();
 	}
+	function goDelete(no){
+		if(confirm("삭제 하시겠습니까?")){
+			view.t_gubun.value ="delete";
+			view.t_no.value = no;
+			view.method="post";
+			view.action="Product";
+			view.submit();
+		}
+	}
 </script>		
 <style>
 	.view_img{
@@ -29,6 +38,7 @@
 <form name="view">
 	<input type="hidden" name="t_gubun">
 	<input type="hidden" name="t_no">
+	<input type="hidden" name="t_attach" value="${t_dto.getAttach()}">
 </form>
 		<div id="b_right">
 			<p class="n_title">
@@ -126,7 +136,7 @@
 				
 			</div>			
 			<div class="buttonGroup">
-				<a href="" class="butt">Delete</a>
+				<a href="javascript:goDelete('${t_dto.getNo()}')" class="butt">Delete</a>
 				<a href="javascript:goUpdate('${t_dto.getNo()}')" class="butt">Update</a>
 				<a href="Product" class="butt">List</a>
 			</div>	

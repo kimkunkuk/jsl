@@ -231,4 +231,50 @@ ResultSet rs = null;
 			
 			return dto;
 		}
+
+		//수정
+		public int getUpdate(ProductDto dto) {
+			int result = 0;
+			String query = "update bike_이주형_product\r\n" + 
+					"set title = '"+dto.getTitle()+"',\r\n" + 
+					"content = '"+dto.getContent()+"',\r\n" + 
+					"attach = '"+dto.getAttach()+"',\r\n" + 
+					"price = '"+dto.getPrice()+"',\r\n" + 
+					"p_size = '"+dto.getP_size()+"',\r\n" + 
+					"p_level = '"+dto.getP_level()+"'\r\n" + 
+					//"reg_date = to_date('"+dto.getReg_date()+"','yyyy-MM-dd hh24:mi:ss')\r\n" + 
+					"where no = '"+dto.getNo()+"'";
+			try {
+				con = DBConnection.getConnection();
+				ps  = con.prepareStatement(query);
+				result = ps.executeUpdate();
+			}catch(SQLException e) {
+				System.out.println("getUpdate(): "+query);
+				e.printStackTrace();
+			}finally {
+				DBConnection.closeDB(con, ps, rs);
+			}
+			
+			return result;
+		}
+		
+		//삭제
+		public int getDelete(String no) {
+			int result = 0;
+			String query = "delete from bike_이주형_product\r\n" + 
+						"where no = '"+no+"'";
+			
+			try {
+				con = DBConnection.getConnection();
+				ps  = con.prepareStatement(query);
+				result = ps.executeUpdate();
+			}catch(SQLException e) {
+				System.out.println("getDelete(): "+query);
+				e.printStackTrace();
+			}finally {
+				DBConnection.closeDB(con, ps, rs);
+			}
+			
+			return result;
+		}
 }

@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import command_product.ProductDelete;
 import command_product.ProductList;
 import command_product.ProductSave;
 import command_product.ProductUpdate;
@@ -73,6 +74,12 @@ public class Product extends HttpServlet {
 		//업데이트 세이브
 		}else if(gubun.equals("updateSave")) {
 			ProductUpdate product = new ProductUpdate();
+			product.execute(request);
+			viewPage = "common_alert.jsp";
+			
+		//삭제
+		}else if(gubun.equals("delete")) {
+			ProductDelete product = new ProductDelete();
 			product.execute(request);
 			viewPage = "common_alert.jsp";
 		}

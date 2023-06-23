@@ -59,6 +59,21 @@ public class ProductDto {
 		this.title = title;
 	}
 
+	//수정용
+	public ProductDto(String no, String title, String content, String attach, String reg_date, String price,
+			String p_size, String p_level) {
+		super();
+		this.no = no;
+		this.title = title;
+		this.content = content;
+		this.attach = attach;
+		this.reg_date = reg_date;
+		this.price = price;
+		this.p_size = p_size;
+		this.p_level = p_level;
+	}
+
+	
 	public String getNo() {
 		return no;
 	}

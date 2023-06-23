@@ -9,7 +9,7 @@
 		if(checkValue(pro.t_price,"가격입력!")) return;
 		if(checkValue(pro.t_p_size,"사이즈입력!")) return;
 		if(checkValue(pro.t_level,"레벨선택!")) return;
-		if(checkValue(pro.t_attach,"사진첨부!")) return;
+		//if(checkValue(pro.t_attach,"사진첨부!")) return;
 		/***  첨부파일 검사 ***/
 		// 1.확장자 검사
 		var fileName = pro.t_attach.value;
@@ -89,6 +89,7 @@
 			</p>
 			<form name="pro" enctype="multipart/form-data">
 			<table class="boardForm">
+			<input type="hidden" name="t_no" value="${t_dto.getNo()}">
 				<colgroup>
 					<col width="15%">
 					<col width="35%">
@@ -142,7 +143,7 @@
 						<td colspan="3">
 						*이미지 첨부 필수 500px * 300px 권장<br><br>
 						<img src="attach/product/${t_dto.getAttach()}" id="preview-image">
-						<input type="hidden" name="t_oriAttach()" value="${t_dto.getAttach()}">
+						<input type="hidden" name="t_oriAttach" value="${t_dto.getAttach()}">
 						<input type="file" name="t_attach" id="input-image" class="input600">
 						</td>
 					</tr>	
