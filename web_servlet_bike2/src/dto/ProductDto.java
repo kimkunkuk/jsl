@@ -35,6 +35,16 @@ public class ProductDto {
 		this.price = price;
 	}
 	
+	//인덱스 프로덕트용
+	public ProductDto(String no, String title, String attach, String p_level, String price) {
+		super();
+		this.no = no;
+		this.title = title;
+		this.attach = attach;
+		this.p_level = p_level;
+		this.price = price;
+	}
+	
 	//게시글 상세보기 용
 	public ProductDto(String no, String title, String content, String attach, String reg_date, String price,
 			String p_size, String id, String p_level, String name, int hit) {

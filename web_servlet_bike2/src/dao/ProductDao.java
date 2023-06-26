@@ -103,6 +103,43 @@ ResultSet rs = null;
 		return arr;
 	}
 	
+	
+	//인덱스 프로덕트 리스트
+		public ArrayList<ProductDto> getProductIndex(){
+			ArrayList<ProductDto> arr = new ArrayList<>();
+			String query = "select * from\r\n" + 
+					"(select rownum rnum, tbl.* from \r\n" + 
+					"(select no, title, attach, p_level, to_char(price,'999,999')as price from bike_이주형_product\r\n" + 
+					"order by p_level )tbl)\r\n" + 
+					"where rnum >= 1 and rnum <= 6";
+			//System.out.println(query);
+			try {
+				con = DBConnection.getConnection();
+				ps  = con.prepareStatement(query);
+				rs  = ps.executeQuery();
+				while(rs.next()) {
+					String no = rs.getString("no");
+					String title = rs.getString("title");
+					String attach = rs.getString("attach");
+					String p_level = rs.getString("p_level");
+					String price = rs.getNString("price");
+					
+					ProductDto dto = new ProductDto(no, title, attach, p_level, price);
+					
+					arr.add(dto);
+					
+				}
+			}catch(SQLException e) {
+				System.out.println("getProductList(): "+query);
+				e.printStackTrace();
+			}finally {
+				DBConnection.closeDB(con, ps, rs);
+			}
+			
+			return arr;
+		}
+		
+		
 	//프로덕트 게시글 전체수
 	public int getTotalCount(String select, String search, String level) {
 		int result = 0;
