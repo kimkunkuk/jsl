@@ -18,7 +18,7 @@
 	<input type="hidden" name="t_gubun">
 </form>
 <div id="b_left">
-			<P>NOTICE & NEWS</P>
+			<P>MANAGER</P>
 			<ul>
 				<li>
 				<a href="Admin">

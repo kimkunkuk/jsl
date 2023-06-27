@@ -1,7 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file = "../common_header.jsp" %>
-<%@ include file="../common_menu_admin.jsp" %>
+
+<c:choose>
+<c:when test="${sessionLevel eq 'admin' }"><%@ include file="../common_menu_admin.jsp" %></c:when>
+<c:otherwise><%@ include file="../common_menu_product.jsp" %></c:otherwise>
+</c:choose>
 <script>
 	function goSearch(){
 		pro.method="post";
@@ -32,6 +36,7 @@
 	<input type="hidden" name="t_no">
 	<input type="hidden" name="t_gubun">
 </form>
+
 <div id="b_right">
 			<p class="n_title">
 				PRODUCT
@@ -102,7 +107,9 @@
 			
 			<div class="paging">
 				${t_paging}
+				<c:if test="${sessionLevel eq 'admin'}">
 				<a href="javascript:goProduct('writeForm')" class="write">글쓰기</a>
+				</c:if>
 			</div>
 		</div>	
 	</div>

@@ -136,8 +136,10 @@
 				
 			</div>			
 			<div class="buttonGroup">
+				<c:if test="${sessionLevel eq 'admin'}">
 				<a href="javascript:goDelete('${t_dto.getNo()}')" class="butt">Delete</a>
 				<a href="javascript:goUpdate('${t_dto.getNo()}')" class="butt">Update</a>
+				</c:if>
 				<a href="Product" class="butt">List</a>
 			</div>	
 		</div>	

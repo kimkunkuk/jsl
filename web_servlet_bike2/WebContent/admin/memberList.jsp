@@ -2,7 +2,13 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../common_header.jsp" %>    
 <%@ include file="../common_menu_admin.jsp" %>
+<c:set var="level" value="${sessionLevel}"></c:set>
 <script>
+	var level ='<c:out value="${sessionLevel}"/>'
+	if(level != 'admin'){
+		alert("관리자 화면입니다.");
+		location.href="Index";
+	}
 	function goSearch(){
 		adm.method="post";
 		adm.action="Admin";

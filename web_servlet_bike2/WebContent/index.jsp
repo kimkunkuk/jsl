@@ -7,7 +7,7 @@
 <link href="css/index_c.css" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
 <script type="text/javascript" src="js/jquery-1.8.1.min.js"></script>	
-<title>홍길동</title>
+<title>TRACK11_이주형</title>
 <script type="text/javascript">
 	$(function(){
 		$(".main_menu > li > a").hover(function(){
@@ -88,6 +88,13 @@
 		bike.t_no.value= no;
 		bike.method="post";
 		bike.action="Notice";
+		bike.submit();
+	}
+	function goProduct(no){
+		bike.t_gubun.value="view";
+		bike.t_no.value= no;
+		bike.method="post";
+		bike.action="Product";
 		bike.submit();
 	}
 </script>
@@ -176,7 +183,7 @@
 						<li>menu5 sub5</li>
 					</ul>
 				</div>
-				<div class="menu1"><a href=""><span class="maintitle">Tires & Tubes</span></a>
+				<div class="menu1"><a href="Product"><span class="maintitle">Product</span></a>
 					<ul>
 						<li>menu6 sub1</li>
 						<li>menu6 sub2</li>
@@ -212,7 +219,7 @@
 				<li><a href="">Clothing</a></li>
 				<li><a href="">Maintenance</a></li>
 				<li><a href="">Parts</a></li>
-				<li><a href="">Tires & Tubes</a></li>
+				<li><a href="Product">Product</a></li>
 				<li><a href="javascript:goNotice('List')">Notice & News</a></li>
 			</ul>
 		</div>
@@ -259,6 +266,8 @@
 		<style>
 			.b_center_middle img{
 				width:105px;
+				border:1px solid black;
+				box-sizing: border-box;
 			}
 			.b_center_middle a{
 				position:relative;
@@ -275,7 +284,7 @@
 				height:75px;
 				padding-top:30px;
 				text-align:center;
-				transform:translate(0,50px);
+				transform:translate(0,30px);
 			}
 			.b_center_middle a:hover .over{
 				opacity:0.8;
@@ -283,25 +292,47 @@
 				transition:0.3s;
 			}
 			.over .p_name{
-				font-size:12px;
+				font-size:14px;
 				font-weight:bold;
 			}
 			.over .price{
-				font-size:10px;
+				font-size:12px;
+			}
+			.other{
+				position:relative;
+				display:inline-block;
+				width:105px;
+				height:105px;
+				text-align:center;
+				padding-top:30px;
+			}
+			.other_p{
+				margin-bottom: 50px;
 			}
 		</style>
 		<div id="b_center">
 			<p class="b_center_top"><img src="images/center_top.jpg"></p>
 			<div class="b_center_middle">
 			<c:forEach items="${t_productDtos}" var="dto">
-				<a href="">
-				<img src="attach/product/${dto.getAttach()}">
-				<div class="over">
-					<p class="p_name">${dto.getTitle()}</p>
-					<p class="price">${dto.getPrice()}</p>
-				</div>
-				</a>
+				<c:choose>
+					<c:when test="${dto ne null}">
+						<a href="javascript:goProduct('${dto.getNo()}')">
+						<img src="attach/product/${dto.getAttach()}">
+						<div class="over">
+						<p class="p_name">${dto.getTitle()}</p>
+						<p class="price">${dto.getPrice()}</p>
+						</div>
+						</a>
+					</c:when>
+					<c:otherwise>
+						<div class="other">
+							<p class="other_p">상품준비중</p>
+						</div>
+					</c:otherwise>
+				</c:choose>
+				
 			</c:forEach>
+			
 			</div>
 		</div>
 		<div id="b_right">

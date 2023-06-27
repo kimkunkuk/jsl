@@ -111,7 +111,7 @@ ResultSet rs = null;
 					"(select rownum rnum, tbl.* from \r\n" + 
 					"(select no, title, attach, p_level, to_char(price,'999,999')as price from bike_이주형_product\r\n" + 
 					"order by p_level )tbl)\r\n" + 
-					"where rnum >= 1 and rnum <= 6";
+					"where rnum >= 1 and rnum <= 5";
 			//System.out.println(query);
 			try {
 				con = DBConnection.getConnection();
@@ -128,6 +128,12 @@ ResultSet rs = null;
 					
 					arr.add(dto);
 					
+				}
+				if(arr.size() <= 6) {
+					for(int k=arr.size(); k <= 6; k++ ) {
+						ProductDto dto = null;
+						arr.add(dto);
+					}
 				}
 			}catch(SQLException e) {
 				System.out.println("getProductList(): "+query);
