@@ -21,7 +21,7 @@
 			<P>PRODUCT</P>
 			<ul>
 				<li>
-				<a href="Admin">
+				<a href="Product">
 					
 					<span class="fnt"><i class="fas fa-apple-alt"></i></span> 
 					

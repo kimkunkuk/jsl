@@ -94,7 +94,7 @@
 						</td>
 						<td class="t_left"><a href="javascript:goView('${arr.getNo()}')">${arr.getNo()}</a></td>
 						<td>${arr.getTitle()}</td>
-						<td>${arr.getPrice()}</td>
+						<td><fmt:formatNumber value="${arr.getPrice()}" pattern="#,###"/></td>
 						<td>
 							<img src="attach/product/${arr.getAttach()}"/ class="view_img">
 						</td>

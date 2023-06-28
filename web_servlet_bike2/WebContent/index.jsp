@@ -311,7 +311,7 @@
 			}
 		</style>
 		<div id="b_center">
-			<p class="b_center_top"><img src="images/center_top.jpg"></p>
+			<p class="b_center_top"><a href="Product"><img src="images/center_top.jpg"></a></p>
 			<div class="b_center_middle">
 			<c:forEach items="${t_productDtos}" var="dto">
 				<c:choose>

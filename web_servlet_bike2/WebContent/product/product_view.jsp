@@ -1,7 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../common_header.jsp" %>
-<%@ include file="../common_menu_admin.jsp" %>	
+<c:choose>
+<c:when test="${sessionLevel eq 'admin' }"><%@ include file="../common_menu_admin.jsp" %></c:when>
+<c:otherwise><%@ include file="../common_menu_product.jsp" %></c:otherwise>
+</c:choose>
 <script>
 	function goView(no){
 		view.t_gubun.value = "view";
@@ -12,6 +15,13 @@
 	}
 	function goUpdate(no){
 		view.t_gubun.value ="update";
+		view.t_no.value = no;
+		view.method="post";
+		view.action="Product";
+		view.submit();
+	}
+	function goSale(no){
+		view.t_gubun.value ="productBuy";
 		view.t_no.value = no;
 		view.method="post";
 		view.action="Product";
@@ -77,7 +87,7 @@
 					</tr>
 					<tr>
 						<th>Price</th>
-						<td>${t_dto.getPrice()}</td>
+						<td><fmt:formatNumber value="${t_dto.getPrice()}" pattern="#,###"/></td>
 						<th>Size</th>
 						<td>${t_dto.getP_size()}</td>
 					</tr>		
@@ -140,6 +150,7 @@
 				<a href="javascript:goDelete('${t_dto.getNo()}')" class="butt">Delete</a>
 				<a href="javascript:goUpdate('${t_dto.getNo()}')" class="butt">Update</a>
 				</c:if>
+				<a href="javascript:goSale('${t_dto.getNo()}')" class="butt">구매</a>
 				<a href="Product" class="butt">List</a>
 			</div>	
 		</div>	

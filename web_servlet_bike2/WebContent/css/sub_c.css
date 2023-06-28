@@ -47,7 +47,10 @@
 		padding:20px;
 		margin-bottom:10px;
 	}
-
+	#b_center{
+		//display:flex;
+		
+	}
 	#footer_div{
 		clear:both;
 		width:100%;
@@ -147,11 +150,11 @@
 	}	
 	
 	.n_title{
-		width:704px;
+		//width:704px;
 		height:28px;
-		text-align:left;
+		text-align:center;
 		font:25px "nanum_bold";
-		border-bottom:1px dotted gray;
+		//border-bottom:1px dotted gray;
 		margin-bottom:20px;
 		margin-top:10px;
 		color:#2E2E2E;

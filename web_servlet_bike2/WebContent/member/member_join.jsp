@@ -93,7 +93,7 @@
 			<P>MEMBER</P>
 			<ul>
 				<li><a href="javascript:goWork('memberLogin')">LOGIN</a></li>
-				<li><a href="">ID / PASSWORD</a></li>
+				<li><a href="javascript:goWork('memberPasswordFind')">ID / PASSWORD</a></li>
 				<li><a href="javascript:goWork('memberJoin')"><span class="fnt"><i class="fas fa-apple-alt"></i></span> JOIN</a></li>
 			</ul>
 		</div>

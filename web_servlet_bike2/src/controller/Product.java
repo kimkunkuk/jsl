@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import command_product.ProductDelete;
 import command_product.ProductList;
+import command_product.ProductSaleSave;
 import command_product.ProductSave;
 import command_product.ProductUpdate;
 import command_product.ProductView;
@@ -80,6 +81,18 @@ public class Product extends HttpServlet {
 		//삭제
 		}else if(gubun.equals("delete")) {
 			ProductDelete product = new ProductDelete();
+			product.execute(request);
+			viewPage = "common_alert.jsp";
+			
+		//제품 구매	폼
+		}else if(gubun.equals("productBuy")) {
+			ProductView product = new ProductView();
+			product.execute(request);
+			viewPage = "product/product_sale.jsp";
+			
+		//제품 구매정보 저장
+		}else if(gubun.equals("saleSave")) {
+			ProductSaleSave product = new ProductSaleSave();
 			product.execute(request);
 			viewPage = "common_alert.jsp";
 		}

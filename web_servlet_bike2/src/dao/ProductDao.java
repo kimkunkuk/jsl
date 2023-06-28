@@ -5,11 +5,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import common.DBConnection;
 import dto.NewsDto;
 import dto.ProductDto;
+import dto.ProductSaleDto;
 
 public class ProductDao {
 Connection con = null;
@@ -42,6 +44,38 @@ ResultSet rs = null;
 			DBConnection.closeDB(con, ps, rs);
 		}
 		return no;
+	}
+	
+	//주문 번호 생성
+	public String getMaxSaleNo() {
+		String no = "";
+		String query = "select nvl(max(s_no),'S000000_000') as no from bike_이주형_product_sale";
+		String trade_code ="";
+		java.util.Date now = new java.util.Date();
+	    SimpleDateFormat vans = new SimpleDateFormat("yyMMdd");
+	    String wdate = vans.format(now);
+	    
+		try {
+			con = DBConnection.getConnection();
+			ps  = con.prepareStatement(query);
+			rs  = ps.executeQuery();
+			if(rs.next()) {
+				no = rs.getNString("no");
+				no = no.substring(8);
+				int n = Integer.parseInt(no);
+				n++;
+				
+				//DecimalFormat df = new DecimalFormat("S000");
+				//no = df.format(n);
+				trade_code = "S"+wdate+"_"+n;
+			}
+		}catch(SQLException e){
+			System.out.println("getMaxSaleNo():"+query);
+			e.printStackTrace();
+		}finally {
+			DBConnection.closeDB(con, ps, rs);
+		}
+		return trade_code;
 	}
 
 	//프로덕트 게시글 저장
@@ -111,7 +145,7 @@ ResultSet rs = null;
 					"(select rownum rnum, tbl.* from \r\n" + 
 					"(select no, title, attach, p_level, to_char(price,'999,999')as price from bike_이주형_product\r\n" + 
 					"order by p_level )tbl)\r\n" + 
-					"where rnum >= 1 and rnum <= 5";
+					"where rnum >= 1 and rnum <= 6";
 			//System.out.println(query);
 			try {
 				con = DBConnection.getConnection();
@@ -313,6 +347,28 @@ ResultSet rs = null;
 				result = ps.executeUpdate();
 			}catch(SQLException e) {
 				System.out.println("getDelete(): "+query);
+				e.printStackTrace();
+			}finally {
+				DBConnection.closeDB(con, ps, rs);
+			}
+			
+			return result;
+		}
+		
+		//제품구매 저장
+		public int getSaleSave(ProductSaleDto dto) {
+			int result = 0;
+			String query = "insert into bike_이주형_product_sale\r\n" + 
+					"(s_no, p_no, id, state, address, pay, price, reg_date)\r\n" + 
+					"values('"+dto.getS_no()+"','"+dto.getP_no()+"','"+dto.getId()+"','"+dto.getState()+"',\r\n" + 
+					"'"+dto.getAddress()+"','"+dto.getPay()+"','"+dto.getPrice()+"',to_date('"+dto.getReg_date()+"','yyyy-MM-dd hh24:mi:ss'))";
+			//System.out.println(dto.getS_no());
+			try {
+				con = DBConnection.getConnection();
+				ps  = con.prepareStatement(query);
+				result = ps.executeUpdate();
+			}catch(SQLException e) {
+				System.out.println("getSaleSave(): "+query);
 				e.printStackTrace();
 			}finally {
 				DBConnection.closeDB(con, ps, rs);
