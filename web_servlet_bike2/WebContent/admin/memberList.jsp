@@ -2,7 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../common_header.jsp" %>    
 <%@ include file="../common_menu_admin.jsp" %>
-<c:set var="level" value="${sessionLevel}"></c:set>
 <script>
 	var level ='<c:out value="${sessionLevel}"/>'
 	if(level != 'admin'){

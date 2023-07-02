@@ -24,15 +24,7 @@
 	}
 	
 </script>
-
-		<div id="b_left">
-			<P>MEMBER</P>
-			<ul>
-				<li><a href="javascript:goWork('memberLogin')">LOGIN</a></li>
-				<li><a href="">ID / PASSWORD</a></li>
-				<li><a href="javascript:goWork('memberJoin')"><span class="fnt"><i class="fas fa-apple-alt"></i></span> JOIN</a></li>
-			</ul>
-		</div>
+<%@ include file="../common_menu_member.jsp" %>
 		<form name="del">
 			<input type="hidden" name="t_id" value="${t_dto.getId()}">
 			<input type="hidden" name="t_gubun">

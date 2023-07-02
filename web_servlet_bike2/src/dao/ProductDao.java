@@ -49,11 +49,13 @@ ResultSet rs = null;
 	//주문 번호 생성
 	public String getMaxSaleNo() {
 		String no = "";
-		String query = "select nvl(max(s_no),'S000000_000') as no from bike_이주형_product_sale";
-		String trade_code ="";
 		java.util.Date now = new java.util.Date();
 	    SimpleDateFormat vans = new SimpleDateFormat("yyMMdd");
 	    String wdate = vans.format(now);
+		String query = "select nvl(max(s_no),'S000000_000') as no from bike_이주형_product_sale\r\n" + 
+				"where s_no like '%"+wdate+"%'";
+		String trade_code ="";
+		
 	    
 		try {
 			con = DBConnection.getConnection();
@@ -65,9 +67,9 @@ ResultSet rs = null;
 				int n = Integer.parseInt(no);
 				n++;
 				
-				//DecimalFormat df = new DecimalFormat("S000");
-				//no = df.format(n);
-				trade_code = "S"+wdate+"_"+n;
+				DecimalFormat df = new DecimalFormat("000");
+				no = df.format(n);
+				trade_code = "S"+wdate+"_"+no;
 			}
 		}catch(SQLException e){
 			System.out.println("getMaxSaleNo():"+query);

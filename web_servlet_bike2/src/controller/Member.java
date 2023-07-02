@@ -68,12 +68,13 @@ public class Member extends HttpServlet {
 		}else if(gubun.equals("memberMyinfo")) {
 			MemberInfo member = new MemberInfo();
 			member.execute(request);
-			String urlGubun = (String)request.getAttribute("urlGubun");
+			String urlGubun = (String)request.getAttribute("urlGubun"); //??? 
 			if(urlGubun.equals("noSession")) {
 				viewPage = "common_alert.jsp";
 			}else {
 				viewPage = "member/member_info.jsp";
 			}
+			request.setAttribute("t_ma", "myinfo");
 		//내정보 수정
 		}else if(gubun.equals("memberUpadteForm")) {
 			MemberInfo member = new MemberInfo();

@@ -1,7 +1,8 @@
 package dto;
 
 public class ProductSaleDto {
-	private String s_no, p_no, id, state, address, pay, price, reg_date;
+	private String s_no, p_no, id, state, address, pay, price, reg_date, 
+				   name, mobile_1, mobile_2, mobile_3,title, attach;
 
 	
 	public ProductSaleDto() {
@@ -23,6 +24,39 @@ public class ProductSaleDto {
 		this.reg_date = reg_date;
 	}
 
+	
+	//주문정보 상세보기용
+	public ProductSaleDto(String s_no, String p_no, String id, String state, String address, String pay, String price,
+			String reg_date, String name, String mobile_1, String mobile_2, String mobile_3, String title,
+			String attach) {
+		super();
+		this.s_no = s_no;
+		this.p_no = p_no;
+		this.id = id;
+		this.state = state;
+		this.address = address;
+		this.pay = pay;
+		this.price = price;
+		this.reg_date = reg_date;
+		this.name = name;
+		this.mobile_1 = mobile_1;
+		this.mobile_2 = mobile_2;
+		this.mobile_3 = mobile_3;
+		this.title = title;
+		this.attach = attach;
+	}
+	
+	//개인 오더리스트 용
+	public ProductSaleDto(String s_no, String state, String price, String reg_date, String title, String attach) {
+		super();
+		this.s_no = s_no;
+		this.state = state;
+		this.price = price;
+		this.reg_date = reg_date;
+		this.title = title;
+		this.attach = attach;
+	}
+	
 	
 	public String getS_no() {
 		return s_no;
@@ -54,6 +88,36 @@ public class ProductSaleDto {
 
 	public String getReg_date() {
 		return reg_date;
+	}
+
+
+	public String getName() {
+		return name;
+	}
+
+
+	public String getMobile_1() {
+		return mobile_1;
+	}
+
+
+	public String getMobile_2() {
+		return mobile_2;
+	}
+
+
+	public String getMobile_3() {
+		return mobile_3;
+	}
+
+
+	public String getTitle() {
+		return title;
+	}
+
+
+	public String getAttach() {
+		return attach;
 	}
 	
 	
