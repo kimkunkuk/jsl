@@ -47,12 +47,14 @@
 			<form name="pro">	
 			<input type="hidden" name="t_nowPage">
 			<p class="select_box select_box_right">
-				<select name="t_level" >
+			<c:if test="${sessionLevel eq 'admin'}">
+				<select name="t_level" class="sel_box">
 					<option value="">레벨선택</option>
 					<option value="A" <c:if test="${t_level eq 'A'}"> selected </c:if> >A</option>
 					<option value="B" <c:if test="${t_level eq 'B'}"> selected </c:if> >B</option>
 					<option value="C" <c:if test="${t_level eq 'C'}"> selected </c:if> >C</option>
 				</select>
+			</c:if>	
 				<select name="t_select" class="sel_box">
 					<option value="title" <c:if test="${t_select eq 'title'}"> selected </c:if> >제품명</option>
 					<option value="no" <c:if test="${t_select eq 'no'}"> selected </c:if> >제품번호</option>
@@ -64,6 +66,8 @@
 			</form>				
 			
 			<table class="boardList">
+			<c:choose>
+			<c:when test="${sessionLevel eq 'admin'}">
 				<colgroup>
 					<col width="5%">
 					<col width="10%">
@@ -84,6 +88,29 @@
 						<th>Hit</th>
 					</tr>
 				</thead>
+			</c:when>
+				
+			<c:otherwise>
+				<colgroup>
+					<col width="5%">
+					<col width="10%">
+					<col width="30%">
+					<col width="10%">
+					<col width="35%">
+					<col width="10%">
+				</colgroup>
+				<thead>
+					<tr>
+						<th>No</th>
+						<th>제품번호</th>
+						<th>제품명</th>
+						<th>가격</th>
+						<th>사진</th>
+						<th>Hit</th>
+					</tr>
+				</thead>
+			</c:otherwise>
+			</c:choose>
 				<tbody>
 				<c:set var="number" value="${t_order}"></c:set>
 				<c:forEach items="${t_arr}" var="arr">
@@ -93,12 +120,14 @@
 							<c:set var="number" value="${number-1}"></c:set>
 						</td>
 						<td class="t_left"><a href="javascript:goView('${arr.getNo()}')">${arr.getNo()}</a></td>
-						<td>${arr.getTitle()}</td>
+						<td><a href="javascript:goView('${arr.getNo()}')">${arr.getTitle()}</a></td>
 						<td><fmt:formatNumber value="${arr.getPrice()}" pattern="#,###"/></td>
 						<td>
 							<img src="attach/product/${arr.getAttach()}"/ class="view_img">
 						</td>
+						<c:if test="${sessionLevel eq 'admin'}">
 						<td>${arr.getP_level()}</td>
+						</c:if>
 						<td>${arr.getHit()}</td>
 					</tr>
 				</c:forEach>	

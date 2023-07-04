@@ -150,7 +150,9 @@
 				<a href="javascript:goDelete('${t_dto.getNo()}')" class="butt">Delete</a>
 				<a href="javascript:goUpdate('${t_dto.getNo()}')" class="butt">Update</a>
 				</c:if>
+				<c:if test="${!empty sessionId}">
 				<a href="javascript:goSale('${t_dto.getNo()}')" class="butt">구매</a>
+				</c:if>
 				<a href="Product" class="butt">List</a>
 			</div>	
 		</div>	

@@ -54,6 +54,7 @@ public class SaleDao {
 		int result = 0;
 		String query = "select count(*) as count from bike_이주형_product_sale\r\n" + 
 					"where "+select+" like '%"+search+"%' and state like '%"+state+"%'";
+		System.out.println(query);
 		try {
 			con = DBConnection.getConnection();
 			ps  = con.prepareStatement(query);
@@ -70,7 +71,31 @@ public class SaleDao {
 		return result;
 		
 	}
-
+	
+	//개인멤버 오더리스트 전체갯수
+	public int getTotalOrderCount(String select, String search, String id) {
+		int result = 0;
+		String query = "select count(*) as count \r\n" + 
+				"from bike_이주형_product_sale s, bike_이주형_product p\r\n" + 
+				"where s.p_no = p.no and "+select+" like '%"+search+"%' and s.id = '"+id+"' ";
+		//System.out.println(query);
+		try {
+			con = DBConnection.getConnection();
+			ps  = con.prepareStatement(query);
+			rs  = ps.executeQuery();
+			if(rs.next()) {
+				result = rs.getInt("count");
+			}
+		}catch(SQLException e) {
+			System.out.println("getTotalOrderCount(): "+query);
+			e.printStackTrace();
+		}finally {
+			DBConnection.closeDB(con, ps, rs);
+		}
+		
+		return result;
+		
+	}
 	//주문정보 상세보기
 	public ProductSaleDto getSaleView(String no) {
 		ProductSaleDto dto = new ProductSaleDto();
@@ -132,13 +157,13 @@ public class SaleDao {
 	}
 	
 	//개인회원 오더리스트
-	public ArrayList<ProductSaleDto> getOrderList(String id){
+	public ArrayList<ProductSaleDto> getOrderList(String id, String select, String search){
 		ArrayList<ProductSaleDto> arr = new ArrayList<>();
 		String query = "select s.s_no, s.state, s.price, to_char(s.reg_date,'yy-MM-dd') as reg_date, \r\n" + 
 				"p.title, p.attach\r\n" + 
 				"from bike_이주형_product_sale s, bike_이주형_product p\r\n" + 
-				"where s.p_no = p.no and s.id='"+id+"'";
-		
+				"where s.p_no = p.no and s.id='"+id+"' and p.title like '%"+search+"%'";
+		//System.out.println(query);
 		try {
 			con = DBConnection.getConnection();
 			ps  = con.prepareStatement(query);

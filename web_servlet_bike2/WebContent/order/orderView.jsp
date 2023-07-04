@@ -93,12 +93,7 @@
 					<tr>
 						<th>진행상황</th>
 						<td colspan="3">
-						<select name="t_state" class="sel_box">
-							<option value="입금확인중"  <c:if test="${t_dto.getState() eq '입금확인중'}">selected</c:if> >입금확인중</option>
-							<option value="배송준비중"  <c:if test="${t_dto.getState() eq '배송준비중'}">selected</c:if> >배송준비</option>
-							<option value="배송중" <c:if test="${t_dto.getState() eq '배송중'}">selected</c:if> >배송중</option>
-							<option value="배송완료" <c:if test="${t_dto.getState() eq '배송완료'}">selected</c:if> >배송완료</option>
-						</select>
+						${t_dto.getState()}
 						</td>
 					</tr>
 					
@@ -114,8 +109,8 @@
 			</table>
 			</form>
 			<div class="buttonGroup">
-				<a href="javascript:goUpdate('${t_dto.getS_no()}')" class="butt">수정</a>
-				<a href="SaleList" class="butt">List</a>
+				<a href="" class="butt">주문취소</a>
+				<a href="Order" class="butt">List</a>
 			</div>	
 		</div>	
 	</div>

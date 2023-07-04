@@ -4,7 +4,18 @@
     pageEncoding="UTF-8"%>
 <%@ include file = "../common_header.jsp" %>
 <script>
-	
+	function goSearch(){
+		pro.method="post";
+		pro.action="Order";
+		pro.submit();
+	}
+	function goView(no){
+		view.t_no.value = no;
+		view.t_gubun.value = "view";
+		view.method="post";
+		view.action="Order";
+		view.submit();
+	}
 </script>
 <%@ include file="../common_menu_member.jsp" %>
 <style>
@@ -12,13 +23,17 @@
 		width:100px;
 		height:100px;
 	}
-</style>				
+</style>
+<form name="view">
+	<input type="hidden" name="t_no">
+	<input type="hidden" name="t_gubun">
+</form>				
 <div id="b_right">
 			<p class="n_title">
 				ORDER LIST
 			</p>
 			<div class="record_group record_group_left">
-				<p><i class="fa-solid fa-bell"></i> 총게시글<span>  </span>건</p>
+				<p><i class="fa-solid fa-bell"></i> 총구매<span>${t_totalcount}</span>건</p>
 			</div>
 			<form name="pro">	
 			<input type="hidden" name="t_nowPage">
@@ -52,7 +67,7 @@
 				<tbody>
 				<c:forEach items="${t_arr}" var="arr">
 					<tr>
-						<td class="t_left"><a href="javascript:goView('${arr.getS_no()}')">${arr.getTitle()}</a></td>
+						<td><a href="javascript:goView('${arr.getS_no()}')">${arr.getTitle()}</a></td>
 						<td><fmt:formatNumber value="${arr.getPrice()}" pattern="#,###"/></td>
 						<td>
 							<img src="attach/product/${arr.getAttach()}"/ class="view_img">

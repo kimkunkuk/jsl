@@ -8,21 +8,22 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.xml.ws.RequestWrapper;
 
-import command_order.OrderList;
-import command_sale.SaleView;
+import dao.ProductDao;
+import dto.ProductDto;
 
 /**
- * Servlet implementation class Order
+ * Servlet implementation class SaleCheck
  */
-@WebServlet("/Order")
-public class Order extends HttpServlet {
+@WebServlet("/SaleCheck")
+public class SaleCheck extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Order() {
+    public SaleCheck() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,24 +32,16 @@ public class Order extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("utf-8");
-		String gubun = request.getParameter("t_gubun");
-		if(gubun == null) gubun = "orderList";
-		String viewPage = "";
-		request.setAttribute("t_ma", "order");
 		
-		if(gubun.equals("orderList")) {
-			OrderList order = new OrderList();
-			order.execute(request);
-			viewPage = "order/orderList.jsp";
-			
-		}else if(gubun.equals("view")) {
-			SaleView order = new SaleView();
-			order.execute(request);
-			viewPage = "order/orderView.jsp";
-		}
-				
-		RequestDispatcher rd = request.getRequestDispatcher(viewPage);
+		
+		ProductDao dao = new ProductDao();
+		String id = request.getParameter("t_id");
+		
+		ProductDto dto = dao.getSaleMember(id);
+		
+		request.setAttribute("t_MemDto", dto);
+		
+		RequestDispatcher rd = request.getRequestDispatcher("product/product_sale.jsp");
 		rd.forward(request, response);
 	}
 
@@ -56,7 +49,8 @@ public class Order extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		
+		
 		doGet(request, response);
 	}
 

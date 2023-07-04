@@ -1,7 +1,7 @@
 package dto;
 
 public class ProductDto {
-	private String no, title, content, attach, reg_date, price, p_size, id, p_level, name;
+	private String no, title, content, attach, reg_date, price, p_size, id, p_level, name, address, mobile_1, mobile_2, mobile_3;
 	private int hit;
 	
 	
@@ -47,7 +47,8 @@ public class ProductDto {
 	
 	//게시글 상세보기 용
 	public ProductDto(String no, String title, String content, String attach, String reg_date, String price,
-			String p_size, String id, String p_level, String name, int hit) {
+			String p_size, String id, String p_level, String name, int hit, String address,
+			String mobile_1, String mobile_2, String mobile_3) {
 		super();
 		this.no = no;
 		this.title = title;
@@ -60,6 +61,10 @@ public class ProductDto {
 		this.p_level = p_level;
 		this.name = name;
 		this.hit = hit;
+		this.address = address;
+		this.mobile_1 = mobile_1;
+		this.mobile_2 = mobile_2;
+		this.mobile_3 = mobile_3;
 	}
 	
 	//이전글, 다음글 용
@@ -83,6 +88,17 @@ public class ProductDto {
 		this.p_level = p_level;
 	}
 
+	//물건구매시 회원정보용
+	public ProductDto(String id, String name, String address, String mobile_1, String mobile_2, String mobile_3) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.address = address;
+		this.mobile_1 = mobile_1;
+		this.mobile_2 = mobile_2;
+		this.mobile_3 = mobile_3;
+	}
+	
 	
 	public String getNo() {
 		return no;
@@ -116,6 +132,21 @@ public class ProductDto {
 	}
 	public int getHit() {
 		return hit;
+	}
+	public String getAddress() {
+		return address;
+	}
+
+	public String getMobile_1() {
+		return mobile_1;
+	}
+
+	public String getMobile_2() {
+		return mobile_2;
+	}
+
+	public String getMobile_3() {
+		return mobile_3;
 	}
 	
 	

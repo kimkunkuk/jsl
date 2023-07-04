@@ -208,7 +208,7 @@ ResultSet rs = null;
 	public ProductDto getProductView(String no) {
 		ProductDto dto = new ProductDto();
 		String query = "select p.no, p.title, p.content, p.attach, to_char(p.reg_date,'yyyy/MM/dd hh24:mi:ss' )as reg_date,\r\n" + 
-				"p.price, p.hit, p.p_size, p.id, p.p_level, m.name \r\n" + 
+				"p.price, p.hit, p.p_size, p.id, p.p_level, m.name, m.address, m.mobile_1, m.mobile_2, m.mobile_3 \r\n" + 
 				"from bike_이주형_product p, bike_이주형_member m\r\n" + 
 				"where p.id = m.id and no = '"+no+"'";
 		try {
@@ -226,8 +226,13 @@ ResultSet rs = null;
 				String id = rs.getNString("id");
 				String p_level = rs.getString("p_level");
 				String name  = rs.getNString("name");
+				String address = rs.getString("address");
+				String mobile_1 = rs.getString("mobile_1");
+				String mobile_2 = rs.getString("mobile_2");
+				String mobile_3 = rs.getString("mobile_3");
 
-				dto = new ProductDto(no, title, content, attach, reg_date, price, p_size, id, p_level, name, hit);
+				dto = new ProductDto(no, title, content, attach, reg_date, price, p_size, 
+						id, p_level, name, hit, address, mobile_1, mobile_2, mobile_3);
 				
 			}
 		}catch(SQLException e) {
@@ -377,5 +382,36 @@ ResultSet rs = null;
 			}
 			
 			return result;
+		}
+		
+		//물건살때 회원정보 
+		public ProductDto getSaleMember(String id) {
+			ProductDto dto = null;
+			String query = "select id, name, address, mobile_1, mobile_2, mobile_3\r\n" + 
+					"from bike_이주형_member \r\n" + 
+					"where id = '"+id+"'";
+			System.out.println(query);
+			try {
+				con = DBConnection.getConnection();
+				ps  = con.prepareStatement(query);
+				rs  = ps.executeQuery();
+				if(rs.next()) {
+					String name = rs.getNString("name");
+					String address = rs.getNString("address");
+					String mobile_1 = rs.getNString("mobile_1");
+					String mobile_2 = rs.getNString("mobile_2");
+					String mobile_3 = rs.getNString("mobile_3");
+					
+					dto = new ProductDto(id, name, address, mobile_1, mobile_2, mobile_3);
+					
+				}
+			}catch(SQLException e) {
+				System.out.println("getSaleMember(): "+query);
+				e.printStackTrace();
+			}finally {
+				DBConnection.closeDB(con, ps, rs);
+			}
+			
+			return dto;
 		}
 }
