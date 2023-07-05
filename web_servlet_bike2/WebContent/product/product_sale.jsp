@@ -28,25 +28,28 @@
 		$('#card').hide();
 	}
 	function Onazi(){
+		/*
 		pro.t_name.value = pro.o_name.value;
 		pro.t_address.value = pro.o_address.value;
 		pro.t_mobile_1.value = pro.o_mobile_1.value;
 		pro.t_mobile_2.value = pro.o_mobile_2.value;
 		pro.t_mobile_3.value = pro.o_mobile_3.value;
-		/*$.ajax({
+		*/
+		
+		$.ajax({
 			type : "POST",
 			url : "SaleCheck",
-			async: false, 
+			async: true, 
 			data: "t_id="+pro.t_id.value,
 			dataType : "text", //순간적으로 띄운 브라우저 에 글씨 받아오겠다.
 			error : function(){
 				alert('통신실패!!!!!');
 			},
 			success : function(data){
-				return data;
+				return pro.t_name.value = data;
 				
 			}
-		});	*/
+		});	
 		
 		
 	}

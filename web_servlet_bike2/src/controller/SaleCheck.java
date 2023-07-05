@@ -1,6 +1,8 @@
 package controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -32,17 +34,17 @@ public class SaleCheck extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		
+		response.setContentType("text/html; charset=utf-8");
 		ProductDao dao = new ProductDao();
+		PrintWriter out = response.getWriter();
 		String id = request.getParameter("t_id");
 		
 		ProductDto dto = dao.getSaleMember(id);
 		
-		request.setAttribute("t_MemDto", dto);
+		ArrayList<ProductDto> t_dto = new ArrayList<>();
 		
-		RequestDispatcher rd = request.getRequestDispatcher("product/product_sale.jsp");
-		rd.forward(request, response);
+		
+		out.print(dto.getName());
 	}
 
 	/**

@@ -392,7 +392,7 @@ ResultSet rs = null;
 			String query = "select id, name, address, mobile_1, mobile_2, mobile_3\r\n" + 
 					"from bike_이주형_member \r\n" + 
 					"where id = '"+id+"'";
-			System.out.println(query);
+			//System.out.println(query);
 			try {
 				con = DBConnection.getConnection();
 				ps  = con.prepareStatement(query);
