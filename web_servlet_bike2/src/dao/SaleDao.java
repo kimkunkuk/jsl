@@ -54,7 +54,7 @@ public class SaleDao {
 		int result = 0;
 		String query = "select count(*) as count from bike_이주형_product_sale\r\n" + 
 					"where "+select+" like '%"+search+"%' and state like '%"+state+"%'";
-		System.out.println(query);
+		//System.out.println(query);
 		try {
 			con = DBConnection.getConnection();
 			ps  = con.prepareStatement(query);
@@ -63,6 +63,7 @@ public class SaleDao {
 				result = rs.getInt("count");
 			}
 		}catch(SQLException e) {
+			System.out.println(query);
 			e.printStackTrace();
 		}finally {
 			DBConnection.closeDB(con, ps, rs);
@@ -187,5 +188,26 @@ public class SaleDao {
 		}
 		
 		return arr;
+	}
+	
+	//주문취소
+	public int getSaleCancel(String no) {
+		int result = 0;
+		String query = "update bike_이주형_product_sale\r\n" + 
+				"set state = '주문취소'\r\n" + 
+				"where s_no = '"+no+"'";
+		
+		try {
+			con = DBConnection.getConnection();
+			ps  = con.prepareStatement(query);
+			result = ps.executeUpdate();
+		}catch(SQLException e){
+			System.out.println(query);
+			e.printStackTrace();
+		}finally {
+			DBConnection.closeDB(con, ps, rs);
+		}
+		
+		return result;
 	}
 }

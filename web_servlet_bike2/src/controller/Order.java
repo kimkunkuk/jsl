@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import command_order.OrderDelete;
 import command_order.OrderList;
 import command_sale.SaleView;
 
@@ -37,15 +38,24 @@ public class Order extends HttpServlet {
 		String viewPage = "";
 		request.setAttribute("t_ma", "order");
 		
+		//주문리스트
 		if(gubun.equals("orderList")) {
 			OrderList order = new OrderList();
 			order.execute(request);
 			viewPage = "order/orderList.jsp";
-			
+		
+		//주문정보 상세보기
 		}else if(gubun.equals("view")) {
 			SaleView order = new SaleView();
 			order.execute(request);
 			viewPage = "order/orderView.jsp";
+			
+		//주문취소	
+		}else if(gubun.equals("delete")) {
+			OrderDelete order = new OrderDelete();
+			order.execute(request);
+			viewPage = "common_alert.jsp";
+			
 		}
 				
 		RequestDispatcher rd = request.getRequestDispatcher(viewPage);

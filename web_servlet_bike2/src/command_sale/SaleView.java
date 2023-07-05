@@ -25,7 +25,11 @@ public class SaleView implements CommonExcute {
 		int result = 0;
 		if(up.equals("1")) {
 			result = dao.getStateUpdate(no, state);
-		}
+			//request.setAttribute("t_dto", dto);
+			//request.setAttribute("t_url", "SaleList?t_gubun=view");
+		}//else {
+			//request.setAttribute("t_url", "SaleList");
+		//}
 		String msg = "수정성공!";
 		if(result == 0) msg = "수정실패!";
 		

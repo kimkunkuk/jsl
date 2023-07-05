@@ -366,9 +366,11 @@ ResultSet rs = null;
 		public int getSaleSave(ProductSaleDto dto) {
 			int result = 0;
 			String query = "insert into bike_이주형_product_sale\r\n" + 
-					"(s_no, p_no, id, state, address, pay, price, reg_date)\r\n" + 
+					"(s_no, p_no, id, state, address, pay, price, reg_date, name, mobile_1, mobile_2, mobile_3, card_1, card_2, card_3, card_4)\r\n" + 
 					"values('"+dto.getS_no()+"','"+dto.getP_no()+"','"+dto.getId()+"','"+dto.getState()+"',\r\n" + 
-					"'"+dto.getAddress()+"','"+dto.getPay()+"','"+dto.getPrice()+"',to_date('"+dto.getReg_date()+"','yyyy-MM-dd hh24:mi:ss'))";
+					"'"+dto.getAddress()+"','"+dto.getPay()+"','"+dto.getPrice()+"',to_date('"+dto.getReg_date()+"','yyyy-MM-dd hh24:mi:ss'),"
+							+ "'"+dto.getName()+"','"+dto.getMobile_1()+"','"+dto.getMobile_2()+"','"+dto.getMobile_3()+"',"
+									+ "'"+dto.getCard_1()+"','"+dto.getCard_2()+"','"+dto.getCard_3()+"','"+dto.getCard_4()+"')";
 			//System.out.println(dto.getS_no());
 			try {
 				con = DBConnection.getConnection();

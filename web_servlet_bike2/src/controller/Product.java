@@ -90,20 +90,6 @@ public class Product extends HttpServlet {
 		}else if(gubun.equals("productBuy")) {
 			ProductView product = new ProductView();
 			product.execute(request);
-			
-			String up = request.getParameter("t_up");
-			if(up == null) up = "";
-			if(up.equals("1")) {
-				ProductDao dao = new ProductDao();
-				String id = request.getParameter("t_id");
-				
-				ProductDto dto = dao.getSaleMember(id);
-				
-				request.setAttribute("t_MemDto", dto);
-				product.execute(request);
-				viewPage = "product/product_sale.jsp";
-			}
-			
 			viewPage = "product/product_sale.jsp";
 			
 		//제품 구매정보 저장

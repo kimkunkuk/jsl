@@ -17,15 +17,17 @@
 		pro.action="Admin"
 		pro.submit();
 	}
-	function goUpdate(no){
-		if(confirm("수정 하시겠습니까?")){
-			pro.t_no.value=no;
-			pro.t_up.value="1";
-			pro.t_gubun.value="view";
-			pro.method="post";
-			pro.action="SaleList"
-			pro.submit();
+	function goDelete(no){
+		var state = '<c:out value="${t_dto.getState()}"/>';
+		if(state == "배송중" || state == "배송완료" ){
+			alert("상품배송이 시작되어 주문취소가 불가능 합니다. 상담사에게 연락해주세요.");
+			return;
 		}
+		pro.t_no.value=no;
+		pro.t_gubun.value="delete";
+		pro.method="post";
+		pro.action="Order";
+		pro.submit();
 	}
 	
 </script>
@@ -109,7 +111,7 @@
 			</table>
 			</form>
 			<div class="buttonGroup">
-				<a href="" class="butt">주문취소</a>
+				<a href="javascript:goDelete('${t_dto.getS_no()}')" class="butt">주문취소</a>
 				<a href="Order" class="butt">List</a>
 			</div>	
 		</div>	

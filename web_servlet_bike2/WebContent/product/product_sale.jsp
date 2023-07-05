@@ -28,15 +28,11 @@
 		$('#card').hide();
 	}
 	function Onazi(){
-		alert("d");
-		pro.t_p_no.value=no;
-		pro.t_up.value="1";
-		pro.t_gubun.value="productBuy";
-		pro.method="post";
-		pro.action="Product";
-		pro.submit();
-		
-		
+		pro.t_name.value = pro.o_name.value;
+		pro.t_address.value = pro.o_address.value;
+		pro.t_mobile_1.value = pro.o_mobile_1.value;
+		pro.t_mobile_2.value = pro.o_mobile_2.value;
+		pro.t_mobile_3.value = pro.o_mobile_3.value;
 		/*$.ajax({
 			type : "POST",
 			url : "SaleCheck",
@@ -107,21 +103,36 @@
 			<table class="boardForm">
 				<tr>
 					<th>이름</th>
-					<td colspan="3"><input type="text" value="${t_MemDto.getName()}" name="t_name" size="7"></td>
+					<td colspan="3"><input type="text" value="" name="t_name" size="7"></td>
 				</tr>
 				<tr>
 					<th>주소</th>
-					<td colspan="3"><input type="text" name="t_address" class="input600"></td>
+					<td colspan="3"><input type="text" value="" name="t_address" class="input600"></td>
 				</tr>
 				<tr>
 					<th>휴대전화</th>
 					<td colspan="3">
-						<input type="text" name="t_mobile_1" size="2"> -
-						<input type="text" name="t_mobile_2" size="3"> -
-						<input type="text" name="t_mobile_3" size="3">
+						<input type="text" name="t_mobile_1" value="" size="2"> -
+						<input type="text" name="t_mobile_2" value="" size="3"> -
+						<input type="text" name="t_mobile_3" value="" size="3">
 					</td>
 				</tr>
-					
+				<tr style="display:none;">
+					<th>이름</th>
+					<td colspan="3"><input type="text" value="${t_dto.getName()}" name="o_name" size="7"></td>
+				</tr>
+				<tr style="display:none;">
+					<th>주소</th>
+					<td colspan="3"><input type="text" value="${t_dto.getAddress()}" name="o_address" class="input600"></td>
+				</tr>
+				<tr style="display:none;">
+					<th>휴대전화</th>
+					<td colspan="3">
+						<input type="text" name="o_mobile_1" value="${t_dto.getMobile_1()}" size="2"> -
+						<input type="text" name="o_mobile_2" value="${t_dto.getMobile_2()}" size="3"> -
+						<input type="text" name="o_mobile_3" value="${t_dto.getMobile_3()}" size="3">
+					</td>
+				</tr>
 				<tr>
 					<th>결제방법</th>
 					<td colspan="3">
@@ -136,7 +147,7 @@
 						<input type="text" name="t_card_1" size="3"> -
 						<input type="text" name="t_card_2" size="3"> -
 						<input type="text" name="t_card_3" size="3"> -
-						<input type="text" name="t_card_3" size="3">
+						<input type="text" name="t_card_4" size="3">
 					</td>
 				</tr>
 				<tr id="cash" style="display:none;">
