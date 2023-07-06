@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../common_header.jsp" %>
 
-
+ <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 <c:if test="${empty sessionId}">
 	<script>
 		alert("로그인 하세요.");
@@ -27,6 +27,7 @@
 		$('#cash').show();
 		$('#card').hide();
 	}
+	var request = new XMLhttpRequest();
 	function Onazi(){
 		/*
 		pro.t_name.value = pro.o_name.value;
@@ -40,8 +41,8 @@
 			type : "POST",
 			url : "SaleCheck",
 			async: true, 
-			data: "t_id="+pro.t_id.value,
-			dataType : "text", //순간적으로 띄운 브라우저 에 글씨 받아오겠다.
+			data: JSON.stringify(test);
+			dataType : "JSON", //순간적으로 띄운 브라우저 에 글씨 받아오겠다.
 			error : function(){
 				alert('통신실패!!!!!');
 			},

@@ -22,19 +22,9 @@ import dto.ProductDto;
 public class SaleCheck extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public SaleCheck() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.setContentType("text/html; charset=utf-8");
+   
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		/*response.setContentType("text/html; charset=utf-8");
 		ProductDao dao = new ProductDao();
 		PrintWriter out = response.getWriter();
 		String id = request.getParameter("t_id");
@@ -44,16 +34,29 @@ public class SaleCheck extends HttpServlet {
 		ArrayList<ProductDto> t_dto = new ArrayList<>();
 		
 		
-		out.print(dto.getName());
+		out.print(dto.getName());*/
+		
+		request.setCharacterEncoding("utf-8");
+		response.setContentType("text/html; charset=utf-8");
+		
+		String id = request.getParameter("t_id");
+		response.getWriter().write(getJSON(id));
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public String getJSON(String id) {
+		StringBuffer result = new StringBuffer("");
+		result.append("{\result\":[");
 		
-		
-		doGet(request, response);
+		ProductDao dao = new ProductDao();
+		ArrayList<ProductDto> arr = dao.getSaleMember(id);
+		for(int i=0; i<arr.size(); i++) {
+			result.append("[{\"value\": \""+arr.get(i).getName() +"\"},");
+			result.append("{\"value\": \""+arr.get(i).getAddress() +"\"},");
+			result.append("{\"value\": \""+arr.get(i).getMobile_1() +"\"},");
+			result.append("{\"value\": \""+arr.get(i).getMobile_2() +"\"},");
+			result.append("{\"value\": \""+arr.get(i).getMobile_3() +"\"}],");
+		}
+		result.append("]}");
+		return result.toString();
 	}
-
 }

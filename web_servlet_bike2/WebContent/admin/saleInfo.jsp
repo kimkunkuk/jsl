@@ -20,19 +20,16 @@
 		adm.submit();
 	}
 	function goView(no){
-		admin.t_gubun.value = "view";
+		admin.t_gubun.value = "view";-
 		admin.t_no.value = no;
 		admin.method="post";
 		admin.action="SaleList";
 		admin.submit();
 	}
-	
-	$(".allclick").click(function(e){
-		e.preventDefault();
-		$("#disableDiv").css("display","block");
-		$("#b_menu_all").slideDown(500);
-		$("#b_menu_all").css("z-index","999");
+	$('.list').click(function(){
+		$("#answer").css("display","block");
 	});
+	
 </script>
 <form name="admin">
 	<input type="hidden" name="t_no">
@@ -74,14 +71,29 @@
 						<th>총매출</th>
 					</tr>
 				</thead>
+<style>
+	.answer{
+		display:none;
+	}
+	
+</style>
 				<tbody>
+				<div class="active">
 				<c:forEach items="${t_arr}" var="arr">
-					<tr>
+					<tr class="list">
 						<td><a href="#">${arr.getReg_date()}</a></td>
 						<td>${arr.getCount()}</td>
 						<td><fmt:formatNumber value="${arr.getPrice()}" pattern="#,###"/>원</td>
 					</tr>
-				</c:forEach>		
+				</c:forEach>
+				<div class="answer">
+				<tr >
+						<td><a href="#">${arr.getReg_date()}</a></td>
+						<td>${arr.getCount()}</td>
+						<td><fmt:formatNumber value="${arr.getPrice()}" pattern="#,###"/>원</td>
+				</tr>
+				</div>
+				</div>	
 				</tbody>
 			</table>
 			

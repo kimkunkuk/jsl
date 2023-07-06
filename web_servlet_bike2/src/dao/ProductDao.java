@@ -387,8 +387,8 @@ ResultSet rs = null;
 		}
 		
 		//물건살때 회원정보 
-		public ProductDto getSaleMember(String id) {
-			ProductDto dto = null;
+		public ArrayList<ProductDto> getSaleMember(String id) {
+			ArrayList<ProductDto> arr = new ArrayList<>();
 			String query = "select id, name, address, mobile_1, mobile_2, mobile_3\r\n" + 
 					"from bike_이주형_member \r\n" + 
 					"where id = '"+id+"'";
@@ -404,8 +404,8 @@ ResultSet rs = null;
 					String mobile_2 = rs.getNString("mobile_2");
 					String mobile_3 = rs.getNString("mobile_3");
 					
-					dto = new ProductDto(id, name, address, mobile_1, mobile_2, mobile_3);
-					
+					ProductDto dto = new ProductDto(id, name, address, mobile_1, mobile_2, mobile_3);
+					arr.add(dto);
 				}
 			}catch(SQLException e) {
 				System.out.println("getSaleMember(): "+query);
@@ -414,6 +414,6 @@ ResultSet rs = null;
 				DBConnection.closeDB(con, ps, rs);
 			}
 			
-			return dto;
+			return arr;
 		}
 }
