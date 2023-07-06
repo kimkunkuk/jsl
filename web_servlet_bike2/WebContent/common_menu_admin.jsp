@@ -9,6 +9,8 @@
 			menuName = "Product";
 		}else if(val == "saleList"){
 			menuName = "SaleList";
+		}else if(val == "saleInfo"){
+			menuName = "SaleList";
 		}
 		menu.t_gubun.value = val;
 		menu.method="post";
@@ -44,6 +46,14 @@
 					<span class="fnt"><i class="fas fa-apple-alt"></i></span> 
 					</c:if>
 					판매리스트
+				</a>
+				</li>
+				<li>
+				<a href="javascript:goMenu('saleInfo')">
+					<c:if test="${t_ma eq 'saleInfo' }">
+					<span class="fnt"><i class="fas fa-apple-alt"></i></span> 
+					</c:if>
+					판매현황
 				</a>
 				</li>
 			</ul>

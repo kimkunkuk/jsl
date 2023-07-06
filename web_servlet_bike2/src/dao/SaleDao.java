@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import common.DBConnection;
+import dto.ProductDto;
 import dto.ProductSaleDto;
 
 public class SaleDao {
@@ -209,5 +210,36 @@ public class SaleDao {
 		}
 		
 		return result;
+	}
+	
+	//판매 현황 리스트
+	public ArrayList<ProductDto> saleInfoList() {
+		ArrayList<ProductDto> arr = new ArrayList<ProductDto>();
+		String query = "select reg_date, sum(price) as price, count(*) as count from\r\n" + 
+				"(select to_char(reg_date , 'yy-MM') as reg_date, price\r\n" + 
+				"from bike_이주형_product_sale where state != '주문취소' and reg_date like '%%') \r\n" + 
+				"group by reg_date order by reg_date desc";
+		
+		try {
+			con = DBConnection.getConnection();
+			ps  = con.prepareStatement(query);
+			rs  = ps.executeQuery();
+			while(rs.next()) {
+				String reg_date = rs.getString("reg_date");
+				String price = rs.getString("price");
+				int count = rs.getInt("count");
+				
+				ProductDto dto = new ProductDto(reg_date, price, count);
+				
+				arr.add(dto);
+			}
+		}catch(SQLException e){
+			System.out.println("saleInfoList"+query);
+			e.printStackTrace();
+		}finally {
+			DBConnection.closeDB(con, ps, rs);
+		}
+		
+		return arr;
 	}
 }

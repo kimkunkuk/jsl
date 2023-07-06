@@ -2,7 +2,7 @@ package dto;
 
 public class ProductDto {
 	private String no, title, content, attach, reg_date, price, p_size, id, p_level, name, address, mobile_1, mobile_2, mobile_3;
-	private int hit;
+	private int hit, count;
 	
 	
 	public ProductDto() {
@@ -99,10 +99,19 @@ public class ProductDto {
 		this.mobile_3 = mobile_3;
 	}
 	
+	//판매현황 리스트용
+	public ProductDto(String reg_date, String price, int count) {
+		super();
+		this.reg_date = reg_date;
+		this.price = price;
+		this.count = count;
+	}
+
 	
 	public String getNo() {
 		return no;
 	}
+	
 	public String getTitle() {
 		return title;
 	}
@@ -147,6 +156,10 @@ public class ProductDto {
 
 	public String getMobile_3() {
 		return mobile_3;
+	}
+
+	public int getCount() {
+		return count;
 	}
 	
 	

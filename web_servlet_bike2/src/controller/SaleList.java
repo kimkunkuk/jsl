@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import command_sale.SaleInfo;
 import command_sale.SaleView;
 import command_sale.StateUpdate;
 
@@ -55,6 +56,13 @@ public class SaleList extends HttpServlet {
 				sale.execute(request);
 				viewPage = "common_alert.jsp";
 			}
+		
+		//판매현황 리스트	
+		}else if(gubun.equals("saleInfo")) {
+			request.setAttribute("t_ma", "saleInfo");
+			SaleInfo sale = new SaleInfo();
+			sale.execute(request);
+			viewPage = "admin/saleInfo.jsp";
 		}
 
 		
