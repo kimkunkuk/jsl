@@ -15,6 +15,8 @@ public class SaleInfo implements CommonExcute {
 		SaleDao dao = new SaleDao();
 		
 		ArrayList<ProductDto> arr = dao.saleInfoList();
+		//ProductDto T_dto = dao.saleTakai();
+		//ProductDto H_dto = dao.saleHikui();
 		
 		request.setAttribute("t_arr", arr);
 	}

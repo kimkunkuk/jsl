@@ -111,7 +111,9 @@
 			</table>
 			</form>
 			<div class="buttonGroup">
+			<c:if test="${t_dto.getState() ne '주문취소'}">
 				<a href="javascript:goDelete('${t_dto.getS_no()}')" class="butt">주문취소</a>
+			</c:if>	
 				<a href="Order" class="butt">List</a>
 			</div>	
 		</div>	

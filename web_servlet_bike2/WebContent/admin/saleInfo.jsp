@@ -26,14 +26,13 @@
 		admin.action="SaleList";
 		admin.submit();
 	}
-	$('.list').click(function(){
-		$("#answer").css("display","block");
-	});
+	
 	
 </script>
 <form name="admin">
 	<input type="hidden" name="t_no">
 	<input type="hidden" name="t_gubun">
+	<input type="hidden" name="t_date" value="${arr.getReg_date()}">
 </form>	
 		<div id="b_right">
 			<p class="n_title">
@@ -58,7 +57,54 @@
 				<button type="button" onClick="goSearch()" class="sel_button"><i class="fa fa-search"></i> SEARCH</button>
 			</p>			
 			</form>
-			<table class="boardList">
+<style>
+	.hide {display:none;}  
+    .show {display:table-row;}  
+    .item td {cursor:pointer;}
+</style>
+ <script type="text/javascript">  
+
+        $(function(){  
+            var article = (".recruit .show");  
+            $(".recruit .item  td").click(function() { 
+                var myArticle =$(this).parents().next("tr");  
+                if($(myArticle).hasClass('hide')) {  
+                    $(article).removeClass('show').addClass('hide');  
+                    $(myArticle).removeClass('hide').addClass('show');  
+                }  
+                else {  
+                    $(myArticle).addClass('hide').removeClass('show');  
+                }  
+            });
+            
+        });  
+		function content(){
+			/*
+			(select reg_date , sum(price) as price from
+(select to_char(reg_date,'yy-MM-dd') as reg_date, price as price
+from bike_이주형_product_sale where state != '주문취소' and s_no like '%2307%' ) 
+group by reg_date) order by price desc
+			*/
+			$.ajax({
+				type : "POST",
+				url : "SaleContent",
+				data: "t_date="+admin.t_date.value,
+				dataType : "text", //순간적으로 띄운 브라우저 에 글씨 받아오겠다.
+				error : function(){
+					alert('통신실패!!!!!');
+				},
+				success : function(data){
+					var result = $.trim(data);
+					
+					join.t_idcheck.value = result;
+					
+				}
+			});	
+			
+		}
+    </script>  	
+   
+			<table class="boardList recruit" >
 				<colgroup>
 					<col width="33%">
 					<col width="33%">
@@ -71,31 +117,23 @@
 						<th>총매출</th>
 					</tr>
 				</thead>
-<style>
-	.answer{
-		display:none;
-	}
-	
-</style>
 				<tbody>
-				<div class="active">
 				<c:forEach items="${t_arr}" var="arr">
-					<tr class="list">
-						<td><a href="#">${arr.getReg_date()}</a></td>
+					
+					<tr class="item" onClick="content()">
+						<td>${arr.getReg_date()}</td>
 						<td>${arr.getCount()}</td>
 						<td><fmt:formatNumber value="${arr.getPrice()}" pattern="#,###"/>원</td>
 					</tr>
-				</c:forEach>
-				<div class="answer">
-				<tr >
-						<td><a href="#">${arr.getReg_date()}</a></td>
-						<td>${arr.getCount()}</td>
+					
+					<tr class="hide">
+						<td></td>
+						<td>숨김</td>
 						<td><fmt:formatNumber value="${arr.getPrice()}" pattern="#,###"/>원</td>
-				</tr>
-				</div>
-				</div>	
+					</tr>
+				</c:forEach>
 				</tbody>
-			</table>
+			</table>	
 			
 			<div class="paging">
 				${t_paging}

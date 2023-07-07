@@ -93,12 +93,19 @@
 					<tr>
 						<th>진행상황</th>
 						<td colspan="3">
+						<c:choose>
+						<c:when test="${t_dto.getState() eq '주문취소'}">
+							${t_dto.getState()}	
+						</c:when>
+						<c:otherwise>
 						<select name="t_state" class="sel_box">
 							<option value="입금확인중"  <c:if test="${t_dto.getState() eq '입금확인중'}">selected</c:if> >입금확인중</option>
 							<option value="배송준비중"  <c:if test="${t_dto.getState() eq '배송준비중'}">selected</c:if> >배송준비</option>
 							<option value="배송중" <c:if test="${t_dto.getState() eq '배송중'}">selected</c:if> >배송중</option>
 							<option value="배송완료" <c:if test="${t_dto.getState() eq '배송완료'}">selected</c:if> >배송완료</option>
 						</select>
+						</c:otherwise>
+						</c:choose>
 						</td>
 					</tr>
 					
