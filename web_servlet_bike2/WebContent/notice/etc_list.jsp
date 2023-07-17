@@ -63,9 +63,9 @@
 							<img src="images/clip.png">
 							</c:if>
 						</td>
-						<td>${arr.getReg_name() }</td>
-						<td>${arr.getReg_date() }</td>
-						<td>${arr.getHit() }</td>
+						<td>${arr.getReg_name()}</td>
+						<td>${arr.getReg_date()}</td>
+						<td>${arr.getHit()}</td>
 					</tr>
 				</c:forEach>	
 					

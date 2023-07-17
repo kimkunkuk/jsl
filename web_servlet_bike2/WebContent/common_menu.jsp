@@ -28,7 +28,7 @@
 				</a>
 				</li>
 				<li>
-				<a href="Freeboard">
+				<a href="FreeBoard">
 					<c:if test="${t_ma eq 'free' }">
 					<span class="fnt"><i class="fas fa-apple-alt"></i></span> 
 					</c:if>
