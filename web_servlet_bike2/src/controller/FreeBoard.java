@@ -11,7 +11,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import comman_free.FreeList;
 import comman_free.FreeSave;
+import comman_free.Freeview;
 import command_notice.NoticeList;
+import command_notice.NoticeView;
 import common.CommonExcute;
 import common.commonToday;
 
@@ -56,8 +58,13 @@ public class FreeBoard extends HttpServlet {
 			FreeSave free = new FreeSave();
 			free.execute(request);
 			viewPage = "common_alert.jsp";
+			
+		//상세보기 
+		}else if(gubun.equals("view")) {
+			Freeview free = new Freeview();
+			free.execute(request);
+			viewPage="free_board/fb_view.jsp";
 		}
-		
 		
 		
 		RequestDispatcher rd = request.getRequestDispatcher(viewPage);

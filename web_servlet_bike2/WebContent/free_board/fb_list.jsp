@@ -5,7 +5,7 @@
 <script>
 	function goSearch(){
 		notice.method="post";
-		notice.action="Notice";
+		notice.action="FreeBoard";
 		notice.submit();
 	}
 	function goPage(pageNumber){
@@ -24,7 +24,7 @@
 		noti.t_gubun.value="view";
 		noti.t_no.value= no;
 		noti.method="post";
-		noti.action="Notice";
+		noti.action="FreeBoard";
 		noti.submit();
 	}
 </script>
@@ -43,13 +43,12 @@
 			<p class="select_box select_box_right">
 			<input type="hidden" name="t_nowPage">
 				<select name="t_select" class="sel_box">
-					<option value="n.title" <c:if test="${t_select eq 'n.title'}"> selected </c:if> >Title</option>
-					<option value="n.content" <c:if test="${t_select eq 'n.content'}"> selected </c:if> >Content</option>
+					<option value="f.title" <c:if test="${t_select eq 'f.title'}"> selected </c:if> >Title</option>
+					<option value="m.name" <c:if test="${t_select eq 'm.name'}"> selected </c:if> >Name</option>
 				</select>
 				<input type="text" name="t_search" value="${t_search }" class="sel_text">
 
 				<button type="button" onclick="goSearch()" class="sel_button"><i class="fa fa-search"></i> SEARCH</button>
-			
 			</p>			
 			</form>
 			<table class="boardList">
@@ -71,11 +70,12 @@
 				</thead>
 				<tbody>
 				
-				
+				<c:set var="number" value="${t_order}"></c:set>
 				<c:forEach items="${t_arr}" var="arr">
 					<tr>
 						<td>
-							
+							${number}
+							<c:set var="number" value="${number-1}"></c:set>
 						</td>
 						<td class="t_left"><a href="javascript:goView('${arr.getNo()}')">${arr.getTitle()}</a></td>
 						<td>${arr.getName() }</td>
