@@ -135,7 +135,7 @@ public class FreeDao {
 			con = DBConnection.getConnection();
 			ps  = con.prepareStatement(query);
 			int result = ps.executeUpdate();
-			if(result != 1) System.out.println("bike freeboard 조회수 오류");
+			if(result != 1) System.out.println("bike freeboard 조회수 오류"+query);
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}finally {
@@ -150,7 +150,7 @@ public class FreeDao {
 			String query = "select f.title, f.content, f.attach, \r\n" + 
 					"to_char(f.reg_date,'yyyy-MM-dd hh24:mi:ss') as reg_date,\r\n" + 
 					"to_char(f.update_date,'yyyy-MM-dd hh24:mi:ss') as update_date,\r\n" + 
-					"f.hit, f.download_hit, m.name\r\n" + 
+					"f.hit, f.download_hit, m.name, f.reg_id \r\n" + 
 					"from bike_이주형_freeboard f, bike_이주형_member m\r\n" + 
 					"where f.reg_id =  m.id and f.no = '"+no+"'";
 			
@@ -167,8 +167,9 @@ public class FreeDao {
 					int hit = rs.getInt(6);
 					int dw_hit = rs.getInt(7);
 					String name = rs.getString(8);
+					String id = rs.getString(9);
 					
-					dto = new FreeDto(title, content, attach, reg_date, update_date, hit, dw_hit, name);
+					dto = new FreeDto(title, content, attach, reg_date, update_date, hit, dw_hit, name, id, no);
 					
 				}
 			}catch(SQLException e) {
@@ -179,5 +180,109 @@ public class FreeDao {
 			}
 			
 			return dto;
+		}
+
+		//업데이트
+		public int getFreeUpdate(FreeDto dto) {
+			int result = 0;
+			String query = "update bike_이주형_freeboard\r\n" + 
+					"set title = '"+dto.getTitle()+"',\r\n" + 
+					"content = '"+dto.getContent()+"',\r\n" + 
+					"attach = '"+dto.getAttach()+"',\r\n" + 
+					"update_date = to_date('"+dto.getUpdate_date()+"','yyyy-MM-dd hh24:mi:ss')\r\n" + 
+					"where no = '"+dto.getNo()+"'";
+			System.out.println(query);
+			try {
+				con = DBConnection.getConnection();
+				ps  = con.prepareStatement(query);
+				result = ps.executeUpdate();
+			}catch(SQLException e) {
+				System.out.println("getFreeUpdate(): "+query);
+				e.printStackTrace();
+			}finally {
+				DBConnection.closeDB(con, ps, rs);
+			}
+			
+			return result;
+		}
+		
+		//다운로드 횟수증가
+		public void getDwhit(String no) {
+			String query = "update bike_이주형_freeboard\r\n" + 
+					"set download_hit = download_hit+1\r\n" + 
+					"where no = '"+no+"'";
+			
+			try {
+				con = DBConnection.getConnection();
+				ps  = con.prepareStatement(query);
+				int result = ps.executeUpdate();
+				if(result != 1) System.out.println("bike freeboard 다운로드 횟수 증가오류"+query);
+			}catch(SQLException e) {
+				e.printStackTrace();
+			}finally {
+				DBConnection.closeDB(con, ps, rs);
+			}
+			
+		}
+		
+		//다운로드 횟수 초기화
+		public void DwHitReset(String no) {
+			String query = "update bike_이주형_freeboard\r\n" + 
+					"set download_hit = 0\r\n" + 
+					"where no = '"+no+"'";
+			try {
+				con = DBConnection.getConnection();
+				ps  = con.prepareStatement(query);
+				int result = ps.executeUpdate();
+				if(result != 1) System.out.println("bike freeboard 다운로드 횟수 증가오류"+query);
+			}catch(SQLException e) {
+				e.printStackTrace();
+			}finally {
+				DBConnection.closeDB(con, ps, rs);
+			}
+			
+		}
+
+		//삭제
+		public int getFreeDelete(String no) {
+			int result = 0;
+			String query = "delete from bike_이주형_freeboard\r\n" + 
+					"where no = '"+no+"'";
+			
+			try {
+				con = DBConnection.getConnection();
+				ps  = con.prepareStatement(query);
+				result = ps.executeUpdate();
+			}catch(SQLException e) {
+				System.out.println("getFreeDelete(): "+query);
+				e.printStackTrace();
+			}finally {
+				DBConnection.closeDB(con, ps, rs);
+			}
+			
+			return result;
+		}
+		
+		//다운로드 횟수 조회
+		public int getdownHit(String no) {
+			int result = 0;
+			String query = "select download_hit from bike_이주형_freeboard\r\n" + 
+					"where no = '"+no+"'";
+			//System.out.println(query);
+			try {
+				con = DBConnection.getConnection();
+				ps  = con.prepareStatement(query);
+				rs  = ps.executeQuery();
+				if(rs.next()) {
+					result = rs.getInt("download_hit");
+				}
+			}catch(SQLException e) {
+				System.out.println("getdownHit() "+query);
+				e.printStackTrace();
+			}finally {
+				DBConnection.closeDB(con, ps, rs);
+			}
+			
+			return result;
 		}
 }

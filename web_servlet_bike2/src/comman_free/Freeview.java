@@ -1,6 +1,7 @@
 package comman_free;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import common.CommonExcute;
 import common.CommonUtil;
@@ -17,6 +18,7 @@ public class Freeview implements CommonExcute {
 		dao.getHitCount(no);
 		
 		FreeDto dto = dao.getFreeView(no);
+		
 		String extension = "";
 		if(dto.getAttach() != null) {
 			int len = dto.getAttach().indexOf(".");
@@ -25,9 +27,13 @@ public class Freeview implements CommonExcute {
 		
 		String todayTime = CommonUtil.getTodayTime();
 		
+		HttpSession session = request.getSession();
+		String id = (String)session.getAttribute("sessionId");
+		
 		request.setAttribute("t_todayTime", todayTime);
 		request.setAttribute("t_dto", dto);
 		request.setAttribute("t_extension", extension);
+		request.setAttribute("t_id", id);
 	}
 
 }

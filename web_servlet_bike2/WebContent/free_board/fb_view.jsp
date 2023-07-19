@@ -14,7 +14,7 @@
 		view.t_gubun.value ="update";
 		view.t_no.value = no;
 		view.method="post";
-		view.action="Product";
+		view.action="FreeBoard";
 		view.submit();
 	}
 	function goSale(no){
@@ -29,10 +29,34 @@
 			view.t_gubun.value ="delete";
 			view.t_no.value = no;
 			view.method="post";
-			view.action="Product";
+			view.action="FreeBoard";
 			view.submit();
 		}
 	}
+	function goDown(no){
+		
+		view.t_no.value = no; 
+		view.method="post";
+		view.action="Filedown";
+		view.submit();
+		
+		$.ajax({
+			type : "POST",
+			url : "DownHit",
+			async: false, 
+			data: "t_no="+no,
+			dataType : "text", //순간적으로 띄운 브라우저 에 글씨 받아오겠다.
+			error : function(){
+				alert('통신실패!!!!!');
+			},
+			success : function(data){
+				var result = $.trim(data);
+				con.down.value = result;
+				
+			}
+		});	
+	}
+	
 </script>		
 <style>
 	.view_img{
@@ -46,24 +70,27 @@
 	<input type="hidden" name="t_gubun">
 	<input type="hidden" name="t_no">
 	<input type="hidden" name="t_attach" value="${t_dto.getAttach()}">
+	<input type="hidden" name="t_fileName" value="${t_dto.getAttach()}">
+	<input type="hidden" name="t_fileDir" value="freeboard">
 </form>
 		<div id="b_right">
 			<p class="n_title">
 				FREE BOARD
 			</p>
-			
+			<form name="con">
 			<table class="boardForm">
 				<colgroup>
 					<col width="15%">
-					<col width="55%">
+					<col width="45%">
 					<col width="10%">
-					<col width="20%">
+					<col width="30%">
 				</colgroup>
 				<tbody>
 					<tr>
 						<th>Title</th>
 						<td colspan="2">${t_dto.getTitle()}</td>
-						<td> <i class="far fa-eye"></i> ${t_dto.getHit()} / 다운로드: ${t_dto.getDw_hit()}회</td>
+						<td> <i class="far fa-eye"></i> ${t_dto.getHit()} / 
+						다운로드: <input type="text" name="down" value="${t_dto.getDw_hit()}" style="width:25px">회</td>
 					</tr>	
 						<style>
 						.viewContent{
@@ -83,7 +110,7 @@
 					</tr>		
 					<tr>
 						<th>Attach</th>
-						<td colspan="3"><a href="common/filedown.jsp?t_fileDir=freeboard&t_fileName=${t_dto.getAttach()}">${t_dto.getAttach()}</a></td>
+						<td colspan="3"><a href="javascript:goDown('${t_dto.getNo()}')">${t_dto.getAttach()}</a></td>
 					</tr>	
 					<tr>
 						<th rowspan="2">Writer</th>
@@ -97,6 +124,7 @@
 					</tr>
 				</tbody>
 			</table>
+			</form>
 			<div class="preNext">
 				<c:if test="${!empty t_predto.getTitle()}">
 				<a href="javascript:goView('${t_predto.getNo()}')">
@@ -139,14 +167,11 @@
 				
 			</div>			
 			<div class="buttonGroup">
-				<c:if test="${sessionLevel eq 'admin'}">
-				<a href="javascript:goDelete('${t_dto.getNo()}')" class="butt">Delete</a>
+			<c:if test="${sessionId == t_dto.getReg_id()}">
 				<a href="javascript:goUpdate('${t_dto.getNo()}')" class="butt">Update</a>
-				</c:if>
-				<c:if test="${!empty sessionId}">
-				<a href="javascript:goSale('${t_dto.getNo()}')" class="butt">구매</a>
-				</c:if>
-				<a href="Product" class="butt">List</a>
+				<a href="javascript:goDelete('${t_dto.getNo()}')" class="butt">Delete</a>
+			</c:if>
+				<a href="FreeBoard" class="butt">List</a>
 			</div>	
 		</div>	
 	</div>

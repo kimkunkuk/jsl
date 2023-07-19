@@ -9,8 +9,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import comman_free.FreeDelete;
 import comman_free.FreeList;
 import comman_free.FreeSave;
+import comman_free.FreeUpdate;
 import comman_free.Freeview;
 import command_notice.NoticeList;
 import command_notice.NoticeView;
@@ -64,6 +66,24 @@ public class FreeBoard extends HttpServlet {
 			Freeview free = new Freeview();
 			free.execute(request);
 			viewPage="free_board/fb_view.jsp";
+		
+		//업데이드 폼
+		}else if(gubun.equals("update")) {
+			Freeview free = new Freeview();
+			free.execute(request);
+			viewPage="free_board/fb_updateForm.jsp";
+			
+		//업데이트 세이브	
+		}else if(gubun.equals("updateSave")) {
+			FreeUpdate free = new FreeUpdate();
+			free.execute(request);
+			viewPage = "common_alert.jsp";
+			
+		//삭제	
+		}else if(gubun.equals("delete")) {
+			FreeDelete free = new FreeDelete();
+			free.execute(request);
+			viewPage = "common_alert.jsp";
 		}
 		
 		

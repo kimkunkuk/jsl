@@ -3,7 +3,7 @@
 <%
 	String savePath = request.getParameter("t_fileDir"); // 첨부파일경로
  	String fileName = request.getParameter("t_fileName");  // 다운로드 받을 첨부파일명
-
+	
  	if(savePath.equals("notice")) savePath = CommonUtil.getFile_dir_notice(); 
  	//else if(savePath.equals("pds")) savePath = CommonUtil.getFile_dir_pds();
  	else if(savePath.equals("freeboard")) savePath = CommonUtil.getFild_dir_freeboard();

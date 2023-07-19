@@ -32,7 +32,7 @@ public class FreeDto {
 	
 	//글 상세보기용
 	public FreeDto(String title, String content, String attach, String reg_date, String update_date, 
-			int hit, int dw_hit, String name) {
+			int hit, int dw_hit, String name, String reg_id, String no) {
 		super();
 		this.title = title;
 		this.content = content;
@@ -42,6 +42,18 @@ public class FreeDto {
 		this.name = name;
 		this.hit = hit;
 		this.dw_hit = dw_hit;
+		this.reg_id = reg_id;
+		this.no = no;
+	}
+	
+	//수정용
+	public FreeDto(String no, String title, String content, String attach, String update_date) {
+		super();
+		this.no = no;
+		this.title = title;
+		this.content = content;
+		this.attach = attach;
+		this.update_date = update_date;
 	}
 
 	public String getNo() {

@@ -79,8 +79,8 @@ public class CommonUtil {
 			return productDir;
 		}
 		public static String getFild_dir_freeboard() {
-			String freeboardDir = "C:/Users/admin/git/JSL/web_servlet_bike2/WebContent/attach/freeboard";
-			//String productDir = "C:/track11_LJH/work_project/.metadata/.plugins/org.eclipse.wst.server.core/tmp1/wtpwebapps/web_servlet_bike2/attach/freeboard";
+			//String freeboardDir = "C:/Users/admin/git/JSL/web_servlet_bike2/WebContent/attach/freeboard";
+			String freeboardDir = "C:/track11_LJH/work_project/.metadata/.plugins/org.eclipse.wst.server.core/tmp1/wtpwebapps/web_servlet_bike2/attach/freeboard";
 			
 			//네비게이터 에 있는 폴더에는 안보임 경로 저기로 하면 사진 등록시 바로 목록에서 나올수있음 새로고침 필요없이
 			return freeboardDir;

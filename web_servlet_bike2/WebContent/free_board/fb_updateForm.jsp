@@ -56,7 +56,7 @@
 		}
 		//noti.t_gubun.value = "save"; 첨부파일 폼 형식 이여서 겟파라미터 안되서 못넘김 그래서  get방식으로 직접 넘기든가 해야댐 아니면 인풋에 벨류값 주던가 
 		noti.method="post";
-		noti.action="FreeBoard?t_gubun=save";
+		noti.action="FreeBoard?t_gubun=updateSave";
 		noti.submit();
 	}
 </script>	
@@ -103,11 +103,11 @@
 </script>		
 		<div id="b_right">
 			<p class="n_title">
-				자유게시판 
+				업데이트 수정
 			</p>
 			<form name="noti" enctype="multipart/form-data">
+			<input type="hidden" name="t_no" value="${t_dto.getNo()}">
 			<table class="boardForm">
-			
 				<colgroup>
 					<col width="15%">
 					<col width="35%">
@@ -117,11 +117,11 @@
 				<tbody>
 					<tr>
 						<th>Title</th>
-						<td colspan="3"><input type="text" name="t_title" class="input600"></td>
+						<td colspan="3"><input type="text" name="t_title" class="input600" value="${t_dto.getTitle()}"></td>
 					</tr>	
 					<tr>
 						<th>Content</th>
-						<td colspan="3"><textarea name="t_content" class="textArea_H250"></textarea></td>
+						<td colspan="3"><textarea name="t_content" class="textArea_H250">${t_dto.getContent()}</textarea></td>
 					</tr>
 					
 <style>
@@ -130,20 +130,20 @@
 		width:500px;
 		height:300px;
 		margin:0 0 10px 50px;
-		display:none;
 	}
 </style>						
 					<tr>
 						<th>Attach</th>
 						<td colspan="3">
-						<img id="preview-image">
+						<img src="attach/freeboard/${t_dto.getAttach()}" id="preview-image">
+						<input type="hidden" name="t_oriAttach" value="${t_dto.getAttach()}">
 						<input type="file" name="t_attach" id="input-image" class="input600">
 						</td>
 					</tr>	
 					<tr>
 						<th>Writer</th>
 						<td>${sessionName}</td>
-						<th>RegDate</th>
+						<th>Update Date</th>
 						<td>${t_todayTime}</td>
 					</tr>	
 
