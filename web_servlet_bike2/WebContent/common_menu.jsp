@@ -36,7 +36,7 @@
 				</a>
 				</li>
 				<li>
-				<a href="javascript:goNotice('etc')">
+				<a href="Etc">
 					<c:if test="${t_ma eq 'etc' }">
 					<span class="fnt"><i class="fas fa-apple-alt"></i></span> 
 					</c:if>

@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import command_notice.EtcList;
 import command_notice.NoticeDelete;
 import command_notice.NoticeList;
 import command_notice.NoticeSave;
@@ -75,12 +74,6 @@ public class Notice extends HttpServlet {
 			notice.execute(request);
 			viewPage="notice/notice_update.jsp";
 			
-		//etc 목록
-		}else if(gubun.equals("etc")) {
-			EtcList Etc = new EtcList();
-			Etc.execute(request);
-			viewPage="notice/etc_list.jsp";
-		
 		//게시글 삭제
 		}else if(gubun.equals("delete")) {
 			NoticeDelete notice = new NoticeDelete();

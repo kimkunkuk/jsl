@@ -200,11 +200,17 @@
 		border-top:1px solid #848484;
 		border-bottom:1px solid #848484; 		
 	}
+	.boardList .item td{ 
+		text-align:center;
+		border-bottom:1px solid #e0e0e0;
+		padding:8px 0;
+	}
 	.boardList tbody td{ 
 		text-align:center;
 		border-bottom:1px solid #e0e0e0;
 		padding:8px 0;
 	}
+	
 	.boardList .t_left{
 		text-align:left;
 	}	
