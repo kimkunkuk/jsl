@@ -36,6 +36,17 @@ public class EtcDto {
 		this.reg_date = reg_date;
 		this.depth = depth;
 	}
+	
+	
+	//댓글용
+	public EtcDto(String no, String title, String group_no, String reg_name, String reg_date) {
+		super();
+		this.no = no;
+		this.title = title;
+		this.group_no = group_no;
+		this.reg_name = reg_name;
+		this.reg_date = reg_date;
+	}
 
 
 	public String getNo() {
