@@ -45,14 +45,15 @@ public class CommentList extends HttpServlet {
 		
 		EtcDao dao = new EtcDao();
 		
-		//String g_no = request.getParameter("t_no");
+		String g_no = request.getParameter("t_no");
+		System.out.println(g_no+"======================================");
 		
 		JSONObject fobj = new JSONObject();
 		JSONArray jarr = new JSONArray();
 		JSONObject jsub = new JSONObject();
 		HashMap<String, Object> hM = new HashMap<String, Object>();
 		
-		ArrayList<EtcDto> arr = dao.getComment();
+		ArrayList<EtcDto> arr = dao.getComment(g_no);
 		
 		for(int k=0; k<arr.size(); k++) {
 			hM = new HashMap<String, Object>();

@@ -99,7 +99,7 @@ public class EtcDao {
 				String query = "select e.no, e.group_no, e.depth, e.title, e.content, e.reg_id, \r\n" + 
 						"to_char(e.reg_date,'yy-MM-dd hh:mi:ss')as reg_date, m.name\r\n" + 
 						"from bike_이주형_etc e, bike_이주형_member m\r\n" + 
-						"where e.reg_id = m.id order by e.no desc ";
+						"where e.reg_id = m.id and e.depth = 0 order by e.no desc ";
 				
 				try {
 					con = DBConnection.getConnection();
@@ -131,12 +131,12 @@ public class EtcDao {
 			}
 
 			//댓글 리스트
-			public ArrayList<EtcDto> getComment() {
+			public ArrayList<EtcDto> getComment(String g_no) {
 				ArrayList<EtcDto> arr = new ArrayList<>();
 				String query = "select e.no, e.group_no, e.title, to_char(e.reg_date,'yy-MM-dd hh:mi:ss') as reg_date, m.name\r\n" + 
 						"from bike_이주형_etc e, bike_이주형_member m\r\n" + 
-						"where e.reg_id = m.id order by e.no desc";
-				
+						"where e.reg_id = m.id and e.group_no = '"+g_no+"' and e.no != '"+g_no+"' order by e.no desc";
+				System.out.println(query);
 				try {
 					con = DBConnection.getConnection();
 					ps  = con.prepareStatement(query);

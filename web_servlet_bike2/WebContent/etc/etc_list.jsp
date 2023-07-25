@@ -40,16 +40,17 @@
 	}
 	
 	$(document).ready(function(){
-		CommentList();
+		//CommentList();
 	});
 	
-	function CommentList(){
-	
+	function CommentList(cnoo){
+		alert(cnoo)
 		$.ajax({
 				
 				type : 'POST',
 				url : 'CommentList',
 				dataType : 'text',
+				data : {"t_no":cnoo},
 				error : function(){
 					alert('통신 실패');
 				},
@@ -65,13 +66,13 @@
 						var group_no = jsob.group_no;
 						var name = jsob.name;
 						var date = jsob.date;
-						if(no == group_no){
+						
 							tb+= "글번호:"+no;
 							tb+= "그룹번호:"+group_no;
 							tb+= "작성자:"+name;
 							tb+= "댓글내용:"+title;
 							tb+= "작성일:"+date;
-						}
+						
 					}
 					tb += "</div>";
 					$(".com-group").html(tb);
@@ -80,6 +81,7 @@
 			});
 		}
 	
+	//댓글저장
 	function goComment(no){
 		var k = "#"+no;
 		console.log($(k).val());
@@ -95,11 +97,15 @@
 			},
 			success : function(){
 				$(k).val("");
-				CommentList();
+				CommentList(no);
 			}
 		});
 	}
-	
+	function Ckon(item) {
+		
+		CommentList(item);
+
+	}
 	
 	$(function(){  
         var article = (".recruit .show");  
@@ -135,7 +141,7 @@
 			</div>			
 			<div class="boardList recruit">
 				<c:forEach items="${t_arr}" var="arr">
-					<div class="item">
+					<div class="item" onClick="Ckon('${arr.getNo()}')">
 						<div><a href="#">${arr.getTitle()}</a></div>
 						<div>${arr.getReg_name()}</div>
 						<div>${arr.getReg_date()}</div>
